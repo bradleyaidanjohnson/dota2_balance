@@ -12,7 +12,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Characters2\",\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\"]"
+        "value": "[\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\",\"Sheet3\"]"
       },
       {
         "name": "PBI_ProTooling",
@@ -37,34 +37,6 @@
       "returnErrorValuesAsNull": true
     },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
-    "expressions": [
-      {
-        "name": "Characters2",
-        "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
-            "name": "PBI_ResultType",
-            "value": "Exception"
-          }
-        ],
-        "expression": [
-          "let",
-          "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\jemma\\OneDrive\\Documents\\Bradley\\Computer Science Studies\\Data Analysis\\Le Wagon\\DOTA 2\\hero button images.xlsx\"), null, true),",
-          "    Characters_Sheet = Source{[Item=\"Characters\",Kind=\"Sheet\"]}[Data],",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(Characters_Sheet,{{\"Column1\", type text}, {\"Column2\", type text}, {\"Column3\", type text}}),",
-          "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
-          "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"names\", type text}, {\"button_images\", type text}, {\"video\", type text}}),",
-          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type1\",{\"video_name\", \"Column9\", \"video\", \"Column6\"})",
-          "in",
-          "    #\"Removed Columns\""
-        ],
-        "kind": "m",
-        "lineageTag": "390454e8-d03b-4542-9bef-96f90347a40c"
-      }
-    ],
     "extendedProperties": [
       {
         "name": "SQLBI_BRAVO_ManageDatesConfiguration",
@@ -214,6 +186,13 @@
         "fromCardinality": "one",
         "fromColumn": "names",
         "fromTable": "Characters",
+        "toColumn": "localized_name",
+        "toTable": "heroes_powerbi"
+      },
+      {
+        "name": "AutoDetected_269e5b7f-c1b2-46f2-8c1f-e869e436d01d",
+        "fromColumn": "names",
+        "fromTable": "Sheet3",
         "toColumn": "localized_name",
         "toTable": "heroes_powerbi"
       }
@@ -2554,12 +2533,12 @@
         "name": "Characters",
         "annotations": [
           {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -2798,7 +2777,7 @@
             "summarizeBy": "none"
           },
           {
-            "name": "_51",
+            "name": "ability_1_img",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -2806,12 +2785,12 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "11885fde-67be-48df-9a1d-fd02d78f4dec",
-            "sourceColumn": "_51",
+            "lineageTag": "080fa860-49be-4de7-ae56-797620667b0f",
+            "sourceColumn": "ability_1_img",
             "summarizeBy": "none"
           },
           {
-            "name": "_55",
+            "name": "ability_1_vid_code",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -2819,12 +2798,12 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "608c16e3-4b72-475f-a3f4-278f2774751a",
-            "sourceColumn": "_55",
+            "lineageTag": "eefbeb6c-356b-4d9f-97c9-adb746f49e0d",
+            "sourceColumn": "ability_1_vid_code",
             "summarizeBy": "none"
           },
           {
-            "name": "_59",
+            "name": "_2",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -2832,8 +2811,476 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "daa89f82-71eb-44b7-b1d3-5cb69f6e16d6",
-            "sourceColumn": "_59",
+            "lineageTag": "62a3a673-7c38-4425-aea6-49023fe09027",
+            "sourceColumn": "_2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_4",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "cdc34890-01b5-4f8a-9885-44503a3bdd70",
+            "sourceColumn": "_4",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_5",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d6ac3155-085b-45db-a317-d109e30acea2",
+            "sourceColumn": "_5",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_7",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "548bf003-a08a-42c5-9827-bc9eb246da36",
+            "sourceColumn": "_7",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_8",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "151f4e63-0351-4f5e-bf06-67b3f6cc23bb",
+            "sourceColumn": "_8",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_9",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "90e834e5-bee8-4fa5-9961-bba91a13d31e",
+            "sourceColumn": "_9",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_11",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "19e82175-4c81-4f16-92e5-0b9cfc2a772c",
+            "sourceColumn": "_11",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_12",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4d2b2240-f785-49b5-8096-03fc287713b7",
+            "sourceColumn": "_12",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_13",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3af48e5f-e80b-49db-8b30-683fcb9b1b37",
+            "sourceColumn": "_13",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_15",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3706450c-d9f9-4e05-9ef0-0d16e096a75f",
+            "sourceColumn": "_15",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_16",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b8cef71a-9d6c-4bd6-870a-c9a58baab850",
+            "sourceColumn": "_16",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_17",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "fec6ad22-a0c0-4242-b5bc-56251f4d81a7",
+            "sourceColumn": "_17",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_19",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "99639ec0-39fe-4164-a393-caedfc82d7d1",
+            "sourceColumn": "_19",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_20",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3cf2668c-2ed8-4636-92d8-3c2c3d062ca6",
+            "sourceColumn": "_20",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_22",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "861cf740-dbda-4339-b4cd-17bdbee7fe53",
+            "sourceColumn": "_22",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_23",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "09c22002-2dc1-4c81-b65a-68dfb4a4f6b9",
+            "sourceColumn": "_23",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_24",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c0affdb4-57f7-4e2e-9137-74be2006a34e",
+            "sourceColumn": "_24",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_26",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a881c220-a236-4ebc-923c-29d686ed8d0f",
+            "sourceColumn": "_26",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_27",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "88d4f0cc-d26c-44f7-9558-e9f00a6da832",
+            "sourceColumn": "_27",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_28",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a4882195-6311-448c-8c95-c45438e232b4",
+            "sourceColumn": "_28",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_30",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "dcb78c44-f74f-49ba-9cc2-b2a0ae7097f3",
+            "sourceColumn": "_30",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_31",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d299b568-0f8c-4c36-8bdd-da424284355a",
+            "sourceColumn": "_31",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_32",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5b5b0d54-e13e-4c91-8d2c-96656d527220",
+            "sourceColumn": "_32",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_34",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "918d872d-b762-4828-b87f-1aebdae588c9",
+            "sourceColumn": "_34",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_35",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "74706cdc-f35b-46ef-bd7c-95c9b4033c96",
+            "sourceColumn": "_35",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_37",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "58283da3-7a84-4a3b-b846-d8ddac842680",
+            "sourceColumn": "_37",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_38",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2206c9f1-9527-4a7e-a542-fc98ef881b1c",
+            "sourceColumn": "_38",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_39",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "acbcfa9e-bf7b-45b0-b9e9-8483b59a5091",
+            "sourceColumn": "_39",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_41",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "96778c75-4bc1-416e-997c-3b185f944386",
+            "sourceColumn": "_41",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_42",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b93b870f-a680-4be6-891f-2a6393bf60fd",
+            "sourceColumn": "_42",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_43",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0b21b11f-6220-466d-8869-cde24810b5b8",
+            "sourceColumn": "_43",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_45",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "81c5becc-be30-4e8e-a55e-169c6ed1a636",
+            "sourceColumn": "_45",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_46",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2d8be847-acf6-46b0-b92a-1860adea3644",
+            "sourceColumn": "_46",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_47",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a5f977cd-59c2-4c3b-8b69-2ae32e89ada0",
+            "sourceColumn": "_47",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_49",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "26b13fdd-9690-49f3-8481-5ec8de11069f",
+            "sourceColumn": "_49",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_50",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8fd472f5-c4e0-48a6-b968-90c7ba622fad",
+            "sourceColumn": "_50",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ab1_title",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3bf2fb07-0b6a-437e-ae55-560ccb5ded37",
+            "sourceColumn": "ab1_title",
             "summarizeBy": "none"
           }
         ],
@@ -2848,10 +3295,122 @@
                 "    Source = GoogleSheets.Contents(\"https://docs.google.com/spreadsheets/d/1zLxE1yP648A_V_HPK0kZu2wDrG2vRDaf4A3UJzb9RPk/edit?usp=sharing\"),",
                 "    Characters_Table = Source{[name=\"Characters\",ItemKind=\"Table\"]}[Data],",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Characters_Table, [PromoteAllScalars=true]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"names\", type text}, {\"button_images\", type text}, {\"title\", type text}, {\"name_caps\", type text}, {\"video_resized\", type text}, {\"\", Int64.Type}, {\"_1\", Int64.Type}, {\"_2\", Int64.Type}, {\"_3\", type text}, {\"_4\", Int64.Type}, {\"_5\", Int64.Type}, {\"_6\", type text}, {\"_7\", Int64.Type}, {\"_8\", Int64.Type}, {\"_9\", Int64.Type}, {\"_10\", type text}, {\"_11\", Int64.Type}, {\"_12\", Int64.Type}, {\"_13\", Int64.Type}, {\"_14\", type text}, {\"_15\", Int64.Type}, {\"_16\", Int64.Type}, {\"_17\", Int64.Type}, {\"_18\", type text}, {\"_19\", Int64.Type}, {\"_20\", Int64.Type}, {\"_21\", type text}, {\"_22\", Int64.Type}, {\"_23\", Int64.Type}, {\"_24\", Int64.Type}, {\"_25\", type text}, {\"_26\", Int64.Type}, {\"_27\", Int64.Type}, {\"_28\", Int64.Type}, {\"_29\", type text}, {\"_30\", Int64.Type}, {\"_31\", Int64.Type}, {\"_32\", Int64.Type}, {\"_33\", type text}, {\"_34\", Int64.Type}, {\"_35\", Int64.Type}, {\"_36\", type text}, {\"_37\", Int64.Type}, {\"_38\", Int64.Type}, {\"_39\", Int64.Type}, {\"_40\", type text}, {\"_41\", Int64.Type}, {\"_42\", Int64.Type}, {\"_43\", Int64.Type}, {\"_44\", type text}, {\"_45\", Int64.Type}, {\"_46\", Int64.Type}, {\"_47\", Int64.Type}, {\"_48\", type text}, {\"_49\", Int64.Type}, {\"_50\", Int64.Type}, {\"_51\", type text}, {\"_52\", Int64.Type}, {\"_53\", Int64.Type}, {\"_54\", Int64.Type}, {\"_55\", type text}, {\"_56\", Int64.Type}, {\"_57\", Int64.Type}, {\"_58\", Int64.Type}, {\"_59\", type text}}),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"_15\", \"_16\", \"_17\", \"_19\", \"_20\", \"_22\", \"_23\", \"_24\", \"_26\", \"_27\", \"_28\", \"_30\", \"_31\", \"_32\", \"_34\", \"_35\", \"_37\", \"_38\", \"_39\", \"_41\", \"_42\", \"_43\", \"_50\", \"_52\", \"_53\", \"_54\", \"_56\", \"_57\", \"_58\", \"_45\", \"_46\", \"_47\", \"_49\", \"_7\", \"_8\", \"_9\", \"_11\", \"_12\", \"_13\", \"_1\", \"_2\", \"_4\", \"_5\", \"\"})",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Promoted Headers\",{\"ability_1_class_start\", \"ability_1_img_start\", \"ability_1_img_end\", \"ability_1_video_html_start\", \"ability_1_video_html_start_1\", \"ab1_class_start\", \"ab1_text_start\", \"\"})",
                 "in",
                 "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Sheet3",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "names",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8c0c8aff-4307-481e-84fb-db14d36dafba",
+            "sourceColumn": "names",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Column1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "84d1b296-b4c4-4427-a38b-9c26dfd77573",
+            "sourceColumn": "Column1",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "ab_title",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1c51cf5f-56be-40d4-bab2-ae5d2e3eccbe",
+            "sourceColumn": "ab_title",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ab_text",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "31de6b53-2482-4249-9de2-26a9f1dcbd5b",
+            "sourceColumn": "ab_text",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ab_img",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a19f228a-854e-477d-88b2-e18a9820b921",
+            "sourceColumn": "ab_img",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ab_vid",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4ce777a8-7d32-4c92-8d52-77b9b37ede96",
+            "sourceColumn": "ab_vid",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "888d5554-ab4b-43c6-a8aa-f370591fb288",
+        "partitions": [
+          {
+            "name": "Sheet3",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleSheets.Contents(\"https://docs.google.com/spreadsheets/d/1zLxE1yP648A_V_HPK0kZu2wDrG2vRDaf4A3UJzb9RPk/edit?usp=sharing\"),",
+                "    Sheet3_Table = Source{[name=\"Sheet3\",ItemKind=\"Table\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet3_Table, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"names\", type text}, {\"\", Int64.Type}, {\"ab_title\", type text}, {\"ab_text\", type text}, {\"ab_img\", type text}, {\"ab_vid\", type text}})",
+                "in",
+                "    #\"Changed Type\""
               ],
               "type": "m"
             }
