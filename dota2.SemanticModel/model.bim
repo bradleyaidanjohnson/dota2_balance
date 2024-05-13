@@ -1,0 +1,2666 @@
+{
+  "compatibilityLevel": 1550,
+  "model": {
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.128.1380.0 (24.04)"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"Characters\",\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\"]"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-GB",
+    "cultures": [
+      {
+        "name": "en-GB",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "extendedProperties": [
+      {
+        "name": "SQLBI_BRAVO_ManageDatesConfiguration",
+        "type": "json",
+        "value": {
+          "name": "Config-01",
+          "autoNaming": 1,
+          "autoScan": 127,
+          "dateAvailable": true,
+          "dateEnabled": true,
+          "dateReferenceTableName": "DateAutoTemplate",
+          "dateReferenceTableValidation": 1,
+          "dateTableName": "Date",
+          "dateTableValidation": 1,
+          "defaults": {
+            "firstDayOfWeek": 1
+          },
+          "description": "Standard gregorian calendar",
+          "exceptTablesColumns": [],
+          "holidaysAvailable": true,
+          "holidaysDefinitionTableName": "HolidaysDefinition",
+          "holidaysDefinitionTableValidation": 0,
+          "holidaysEnabled": false,
+          "holidaysTableName": "Holidays",
+          "holidaysTableValidation": 0,
+          "isCurrent": false,
+          "isCustom": false,
+          "isoCountry": "US",
+          "onlyTablesColumns": [],
+          "targetMeasures": [],
+          "templateUri": "file:///C:/Users/jemma/AppData/Local/Bravo/.temp/ManageDates/Templates/Config-01.template.json",
+          "timeIntelligenceAvailable": true,
+          "timeIntelligenceEnabled": true
+        }
+      }
+    ],
+    "relationships": [
+      {
+        "name": "AutoDetected_5cc515a0-3835-4aa1-8163-14c3004c9c67",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "match_id",
+        "fromTable": "teamfights_powerbi",
+        "toColumn": "match_id",
+        "toTable": "matches_powerbi"
+      },
+      {
+        "name": "AutoDetected_bf089be1-aa8f-4f10-830e-87602369450c",
+        "fromColumn": "item_id",
+        "fromTable": "items_powerbi",
+        "toColumn": "item_id",
+        "toTable": "item_names_powerbi"
+      },
+      {
+        "name": "AutoDetected_e65ff684-f717-4108-ab38-9bf36871816c",
+        "fromColumn": "killee_id",
+        "fromTable": "killed_powerbi",
+        "toColumn": "killee_id",
+        "toTable": "killee_names_powerbi"
+      },
+      {
+        "name": "7e4586e2-4722-4c39-b7be-71bd0ce48895",
+        "fromColumn": "ability_id",
+        "fromTable": "abilities_powerbi",
+        "toColumn": "row_num",
+        "toTable": "ability_names_powerbi"
+      },
+      {
+        "name": "AutoDetected_81af04bd-1f64-48c2-abed-c1ba42c3a57f",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "match_id",
+        "fromTable": "picks_bans",
+        "toCardinality": "many",
+        "toColumn": "match_id",
+        "toTable": "matches_powerbi"
+      },
+      {
+        "name": "bbb17833-a02a-4f28-8fac-301db9c6969e",
+        "fromColumn": "hero_id",
+        "fromTable": "picks_bans",
+        "toColumn": "id",
+        "toTable": "heroes_powerbi"
+      },
+      {
+        "name": "7a932bb1-58e0-4600-bff7-cda468412d24",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "hero_id",
+        "fromTable": "roles",
+        "toColumn": "id",
+        "toTable": "heroes_powerbi"
+      },
+      {
+        "name": "09fead60-c6c6-41b2-862b-e7345f7b2786",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "names",
+        "fromTable": "Characters",
+        "toColumn": "localized_name",
+        "toTable": "heroes_powerbi"
+      },
+      {
+        "name": "e87c967e-5429-4b3d-a680-798a7b561c98",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "secondary_key",
+        "fromTable": "players_powerbi",
+        "toColumn": "primary_key",
+        "toTable": "teamfights_powerbi"
+      },
+      {
+        "name": "457aad65-6e99-477a-b202-e123cc9fa413",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "primary_key",
+        "fromTable": "items_powerbi",
+        "toColumn": "primary_key",
+        "toTable": "players_powerbi"
+      },
+      {
+        "name": "a96785f8-f714-4ae5-809a-faa5210f3d6c",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "primary_key",
+        "fromTable": "abilities_powerbi",
+        "toColumn": "primary_key",
+        "toTable": "players_powerbi"
+      },
+      {
+        "name": "d09292a5-6fa2-4836-a082-0fcd9cd52500",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "primary_key",
+        "fromTable": "killed_powerbi",
+        "toColumn": "primary_key",
+        "toTable": "players_powerbi"
+      },
+      {
+        "name": "0ec9ab6f-3a89-4af8-bfc0-a746b85a268f",
+        "fromColumn": "start_time_date",
+        "fromTable": "matches_powerbi",
+        "toColumn": "Date",
+        "toTable": "Date"
+      },
+      {
+        "name": "AutoDetected_1709e94c-47e0-4ea2-8243-6390357cd662",
+        "fromColumn": "match_id",
+        "fromTable": "players_matches",
+        "toColumn": "match_id",
+        "toTable": "matches_powerbi"
+      },
+      {
+        "name": "ada96f61-1791-4d85-9367-80bde1a42317",
+        "fromColumn": "hero_id",
+        "fromTable": "players_matches",
+        "toColumn": "id",
+        "toTable": "heroes_powerbi"
+      }
+    ],
+    "sourceQueryCulture": "en-GB",
+    "tables": [
+      {
+        "name": "Characters",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "names",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "17a61e0f-88a8-4fd4-9b47-1d5e94cc6963",
+            "sourceColumn": "names",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "button_images",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9d50ad21-4823-47c2-883d-5cb1cce3b4ef",
+            "sourceColumn": "button_images",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "title",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "eaa6b603-edb0-4e2e-b5f6-8b172085b599",
+            "sourceColumn": "title",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name_caps",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3b54381d-88b2-495f-ab4e-baf263a6cb47",
+            "sourceColumn": "name_caps",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "video_resized",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bb898bf0-2a4d-4553-b7f1-686d009a8a63",
+            "sourceColumn": "video_resized",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ability_1_class_start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "36fcad6e-6528-4c70-be77-83c4f8871011",
+            "sourceColumn": "ability_1_class_start",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ability_1_img_start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1fac4261-eec2-4162-8e3e-a2e1583af11c",
+            "sourceColumn": "ability_1_img_start",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ability_1_img_end",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "dd59332f-7993-48a8-b91e-511777b62370",
+            "sourceColumn": "ability_1_img_end",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ability_1_img",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a25a4584-4110-47a7-8cd8-4d1ad931bcdf",
+            "sourceColumn": "ability_1_img",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ability_1_video_html_start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "86baef59-e0d5-46c1-8676-f3cba150bd5a",
+            "sourceColumn": "ability_1_video_html_start",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ability_1_video_html_start_1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "61d84d1c-ecb0-4809-8da9-5d4b87ab585f",
+            "sourceColumn": "ability_1_video_html_start_1",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ability_1_vid_code",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4c0da8fa-4a8f-45e9-9c1c-aa352962fcc7",
+            "sourceColumn": "ability_1_vid_code",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "98734b22-81c6-4827-8b5b-527db404e9fe",
+        "partitions": [
+          {
+            "name": "Characters",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\jemma\\OneDrive\\Documents\\Bradley\\Computer Science Studies\\Data Analysis\\Le Wagon\\DOTA 2\\hero button images.xlsx\"), null, true),",
+                "    Characters_Sheet = Source{[Item=\"Characters\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Characters_Sheet,{{\"Column1\", type text}, {\"Column2\", type text}, {\"Column3\", type text}}),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"names\", type text}, {\"button_images\", type text}, {\"video\", type text}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type1\",{\"video_name\", \"Column9\", \"video\", \"Column6\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "items_powerbi",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "match_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3f12c526-be8f-4ddb-8b40-e95ce8b86a8d",
+            "sourceColumn": "match_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "fight",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "1dbb7c58-04f2-4235-99e2-3bfc569d42db",
+            "sourceColumn": "fight",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "player_num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4c06a7c0-569b-4e60-905b-192dc260621e",
+            "sourceColumn": "player_num",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "item_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "981ffdf2-76d7-4071-9831-120cf851976a",
+            "sourceColumn": "item_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "uses",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c92922fc-ea1f-4ec4-a2d0-480cb0d4dae1",
+            "sourceColumn": "uses",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "primary_key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "607cbbf7-205f-473a-9c6e-b384dc7a699c",
+            "sourceColumn": "primary_key",
+            "summarizeBy": "none"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "e97244f7-076d-42cf-a032-63fa189541f2",
+        "partitions": [
+          {
+            "name": "items_powerbi",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    items_powerbi_View = dota2_Schema{[Name=\"items_powerbi\",Kind=\"View\"]}[Data],",
+                "    #\"Added Custom\" = Table.AddColumn(items_powerbi_View, \"primary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\") & \"_\" & Text.From([player_num]))",
+                "in",
+                "    #\"Added Custom\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "killed_powerbi",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "match_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "03e3a099-682e-4c97-b184-419796fa84b1",
+            "sourceColumn": "match_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "fight",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "6c54ba09-3425-4a84-aa07-73b11b510128",
+            "sourceColumn": "fight",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "player_num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3fe198c8-e804-4d8d-a908-80c5d3542569",
+            "sourceColumn": "player_num",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "killee_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "589785b9-0da6-4f4a-81d5-69a65497d009",
+            "sourceColumn": "killee_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "kills",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0a6529df-ef8f-497d-9659-353f2e927ed4",
+            "sourceColumn": "kills",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "primary_key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f5c3a932-79c8-4aff-925f-a16e8d1aea21",
+            "sourceColumn": "primary_key",
+            "summarizeBy": "none"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "784173e5-8136-47ff-ae74-83b46d081e03",
+        "partitions": [
+          {
+            "name": "killed_powerbi",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    killed_powerbi_View = dota2_Schema{[Name=\"killed_powerbi\",Kind=\"View\"]}[Data],",
+                "    #\"Added Custom\" = Table.AddColumn(killed_powerbi_View, \"Custom\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\") & \"_\" & Text.From([player_num])),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Custom\",{{\"Custom\", \"primary_key\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "matches_powerbi",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "match_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "1df44f7e-2e23-4b60-b64a-0738abd8b5a0",
+            "sourceColumn": "match_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "radiant_win",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "lineageTag": "e3d372ff-f2cc-4cae-97e9-750a45ca6d09",
+            "sourceColumn": "radiant_win",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "start_time",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "912bbb18-611d-4689-b5c8-ad3e434184a2",
+            "sourceColumn": "start_time",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "duration",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "cb66e9be-600d-4c67-8cce-1461f9231e50",
+            "sourceColumn": "duration",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "tower_status_radiant",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "326c57d8-f081-402d-9073-25391e7b433c",
+            "sourceColumn": "tower_status_radiant",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "tower_status_dire",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "63ef64f6-0a62-4a85-8446-017e50c860a5",
+            "sourceColumn": "tower_status_dire",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "barracks_status_radiant",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "12145da0-6401-4888-b797-96e2843faaf2",
+            "sourceColumn": "barracks_status_radiant",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "barracks_status_dire",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "57d53c3f-dbc4-49e2-898b-f5472570c5de",
+            "sourceColumn": "barracks_status_dire",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "cluster",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e53b21c1-e9f8-4c29-b1fe-ad343d5a04b6",
+            "sourceColumn": "cluster",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "first_blood_time",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "658bbd7d-3624-40bf-830c-b3b527c39162",
+            "sourceColumn": "first_blood_time",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "leagueid",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "298f1b13-3e55-4d9d-8e05-b27ecb2f8934",
+            "sourceColumn": "leagueid",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "game_mode",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7136d10f-3a46-497c-8d66-3ec9401a6a78",
+            "sourceColumn": "game_mode",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "radiant_team_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b79c450c-c112-45c2-9a88-6cec7c8bfbaf",
+            "sourceColumn": "radiant_team_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "dire_team_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "1c333647-4822-4e0f-aef0-78b8cf7fae86",
+            "sourceColumn": "dire_team_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "radiant_team_complete",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "9e23a6e3-b836-492b-90f7-d0d9d844dc94",
+            "sourceColumn": "radiant_team_complete",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "dire_team_complete",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "a2ee7c1a-4e06-4acf-b8bc-33cdd6194d05",
+            "sourceColumn": "dire_team_complete",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "radiant_score",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c310fcbd-4717-414a-a3bb-25c271e1d739",
+            "sourceColumn": "radiant_score",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "dire_score",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "adf4c8fc-a234-4a65-b6f7-a66432640af5",
+            "sourceColumn": "dire_score",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "series_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e9d96da5-00b8-4bd1-8ddc-cc4cb5117ae6",
+            "sourceColumn": "series_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "series_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "415f6e07-f0bf-41a3-98c1-2871ec903f37",
+            "sourceColumn": "series_type",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "patch",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "25947e74-945b-4c9b-92e4-fb93a304bc32",
+            "sourceColumn": "patch",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "start_time_date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "300ef1b1-58f5-4850-b253-ad3fe98f0899",
+            "sourceColumn": "start_time_date",
+            "summarizeBy": "none"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "a8887685-29fc-4bc3-a272-7e851b26a343",
+        "partitions": [
+          {
+            "name": "matches_powerbi",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    matches_powerbi_View = dota2_Schema{[Name=\"matches_powerbi\",Kind=\"View\"]}[Data],",
+                "    #\"Added Custom\" = Table.AddColumn(matches_powerbi_View, \"Custom\", each [start_time]),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Custom\",{{\"Custom\", \"start_time_date\"}}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"start_time_date\", type date}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "players_powerbi",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "match_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "7c35badd-2f46-40b9-a95d-9e5c3c297256",
+            "sourceColumn": "match_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "fight",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "5435d5c4-6729-4c95-9752-95f149da041e",
+            "sourceColumn": "fight",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "player_num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "5d9285c5-50b5-46d8-a63e-df8c289ab888",
+            "sourceColumn": "player_num",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "deaths_pos",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "80922621-a57e-49c6-bb09-3f60037353ea",
+            "sourceColumn": "deaths_pos",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ability_targets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f8d54667-c274-400e-908b-9ed75b781995",
+            "sourceColumn": "ability_targets",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "deaths",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "8e8dc24b-3ac1-4fe9-a999-7fbb0da22996",
+            "sourceColumn": "deaths",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "buybacks",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "37749fa0-518c-4f13-ac6d-bd1fa0260702",
+            "sourceColumn": "buybacks",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "damage",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "1e8e9936-6147-47a0-89fe-5dca5bb5beeb",
+            "sourceColumn": "damage",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "healing",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4bdf51c5-1809-4530-9a21-60c4db1c14d5",
+            "sourceColumn": "healing",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "gold_delta",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "46e03b2e-4626-44f8-b9ed-2e1a42943ae7",
+            "sourceColumn": "gold_delta",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "xp_delta",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "fbcd47d1-b84c-43ab-b870-f2ae34ef9d35",
+            "sourceColumn": "xp_delta",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "xp_start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c4fa2439-b2a6-4072-bcbc-ba1fad166bd9",
+            "sourceColumn": "xp_start",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "xp_end",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "bfcc961a-017f-4a0d-9490-a208ef586ca1",
+            "sourceColumn": "xp_end",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "primary_key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "05c18abb-a7e1-4c67-a155-278636306739",
+            "sourceColumn": "primary_key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "secondary_key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d8f46ab3-44cd-46f1-a994-5e8770e29049",
+            "sourceColumn": "secondary_key",
+            "summarizeBy": "none"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "06c3784e-5bb5-4586-b066-dbfdc1c86185",
+        "partitions": [
+          {
+            "name": "players_powerbi",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    players_powerbi_View = dota2_Schema{[Name=\"players_powerbi\",Kind=\"View\"]}[Data],",
+                "    #\"Added Custom\" = Table.AddColumn(players_powerbi_View, \"primary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\") & \"_\" & Text.From([player_num])),",
+                "    #\"Added Custom1\" = Table.AddColumn(#\"Added Custom\", \"secondary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\"))",
+                "in",
+                "    #\"Added Custom1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "teamfights_powerbi",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "match_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "1aa82d90-a479-4ad5-91f4-387fcd18a234",
+            "sourceColumn": "match_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "fight",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "526ac2b5-7b44-4d23-80b0-5b254c7e7b23",
+            "sourceColumn": "fight",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "fight_start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "beec290e-796e-4594-880f-d4d00d230044",
+            "sourceColumn": "fight_start",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "fight_end",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "8f9f88d1-b649-42a1-bc01-137ee644fe16",
+            "sourceColumn": "fight_end",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "last_death",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "851db093-56c7-4518-8f7a-1aa92d371370",
+            "sourceColumn": "last_death",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "deaths",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "35dcd15b-e0b4-4d40-89c6-6fcb3a90b0ad",
+            "sourceColumn": "deaths",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "primary_key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "63f74221-23cc-48af-8269-d8b6af77b625",
+            "sourceColumn": "primary_key",
+            "summarizeBy": "none"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "b36ce3b9-afaf-4b79-bbc2-87abc10be1d8",
+        "partitions": [
+          {
+            "name": "teamfights_powerbi",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    teamfights_powerbi_View = dota2_Schema{[Name=\"teamfights_powerbi\",Kind=\"View\"]}[Data],",
+                "    #\"Added Custom\" = Table.AddColumn(teamfights_powerbi_View, \"primary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\"))",
+                "in",
+                "    #\"Added Custom\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "abilities_powerbi",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "match_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "04f4c9f8-60d1-4f90-9730-1078e99953f3",
+            "sourceColumn": "match_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "fight",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f5ca62ff-0e13-46fc-a4b6-aae462de13bb",
+            "sourceColumn": "fight",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "player_num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f660df06-b4da-41f0-9d65-a82a765b6634",
+            "sourceColumn": "player_num",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "ability_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3e872dae-24ca-4961-b034-2448b8e05199",
+            "sourceColumn": "ability_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "uses",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e7cb5168-7a9e-4230-9831-3d5b19f0075e",
+            "sourceColumn": "uses",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "primary_key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "af40cafa-d1b8-484b-8d41-e66f06a0ee05",
+            "sourceColumn": "primary_key",
+            "summarizeBy": "none"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "20109395-f980-44d7-81a5-9290b51f5ba6",
+        "partitions": [
+          {
+            "name": "abilities_powerbi",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    abilities_powerbi_Table = dota2_Schema{[Name=\"abilities_powerbi\",Kind=\"Table\"]}[Data],",
+                "    #\"Added Custom\" = Table.AddColumn(abilities_powerbi_Table, \"Custom\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\") & \"_\" & Text.From([player_num])),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Custom\",{{\"Custom\", \"primary_key\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ability_names_powerbi",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8fbc80fe-b3f3-4038-ad34-b3860215faab",
+            "sourceColumn": "name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "row_num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0fb6f83c-23d7-4f8d-8f60-99589c9ed84f",
+            "sourceColumn": "row_num",
+            "summarizeBy": "none"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "3e26d393-eef6-4564-9886-e1424de993d5",
+        "partitions": [
+          {
+            "name": "ability_names_powerbi",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    ability_names_powerbi_Table = dota2_Schema{[Name=\"ability_names_powerbi\",Kind=\"Table\"]}[Data]",
+                "in",
+                "    ability_names_powerbi_Table"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "item_names_powerbi",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "item_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b988e20c-d263-4f54-93ae-c2fed7f489e3",
+            "sourceColumn": "item_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "item_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "437984d7-09b0-45fd-90c9-edb58138ca28",
+            "sourceColumn": "item_name",
+            "summarizeBy": "none"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "96e9f718-d92c-4af0-9cb3-c00a39ca8985",
+        "partitions": [
+          {
+            "name": "item_names_powerbi",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    item_names_powerbi_Table = dota2_Schema{[Name=\"item_names_powerbi\",Kind=\"Table\"]}[Data]",
+                "in",
+                "    item_names_powerbi_Table"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "killee_names_powerbi",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "killee_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f07739cf-5f8b-4741-b5a7-e694413c5806",
+            "sourceColumn": "killee_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b8c7f736-c741-4fe9-bb7d-ac72a224dc53",
+            "sourceColumn": "name",
+            "summarizeBy": "none"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "f4e6e124-7b45-4b20-ba33-94f6cd9159d0",
+        "partitions": [
+          {
+            "name": "killee_names_powerbi",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    killee_names_powerbi_Table = dota2_Schema{[Name=\"killee_names_powerbi\",Kind=\"Table\"]}[Data]",
+                "in",
+                "    killee_names_powerbi_Table"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "heroes_powerbi",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "082d1ee8-148e-4980-aba6-09a9e8e6cf28",
+            "sourceColumn": "id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b1288b00-eb90-4e1a-820f-880cf6024047",
+            "sourceColumn": "name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "localized_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "31f8763a-748e-4b58-8049-61e5fa31696d",
+            "sourceColumn": "localized_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "primary_attr",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3b2a1e52-060c-45db-ae85-44e5913b60f7",
+            "sourceColumn": "primary_attr",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "attack_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1fbb83e1-5722-4a90-b7a7-9867786e9070",
+            "sourceColumn": "attack_type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "legs",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d44a362a-d046-4844-8f28-736bf0ca9217",
+            "sourceColumn": "legs",
+            "summarizeBy": "sum"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "a58bfc72-5325-4e7a-96be-51b64329228d",
+        "partitions": [
+          {
+            "name": "heroes_powerbi",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    heroes_powerbi_View = dota2_Schema{[Name=\"heroes_powerbi\",Kind=\"View\"]}[Data]",
+                "in",
+                "    heroes_powerbi_View"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "roles",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "role",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "056517d5-0965-4b91-8408-3fe5a2c437fe",
+            "sourceColumn": "role",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "hero_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "5db9f641-d58a-471b-b03e-6c2e16eeac29",
+            "sourceColumn": "hero_id",
+            "summarizeBy": "none"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "6b638360-e9aa-403d-92e3-84fe774bf429",
+        "partitions": [
+          {
+            "name": "roles",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    roles_Table = dota2_Schema{[Name=\"roles\",Kind=\"Table\"]}[Data]",
+                "in",
+                "    roles_Table"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "picks_bans",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "is_pick",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "lineageTag": "6666904e-1f52-4ea0-90f5-2c01c1b865cd",
+            "sourceColumn": "is_pick",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "hero_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d6cabf8d-3b1d-4563-b54c-607f54fa357b",
+            "sourceColumn": "hero_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "team",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "124201b0-3e35-49e6-bb6a-6779ae25f274",
+            "sourceColumn": "team",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "dc7fbc43-d9ca-4b86-9c68-9dd34761a049",
+            "sourceColumn": "order",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "match_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f7d80402-7b8e-417a-bfa2-1f98547568c8",
+            "sourceColumn": "match_id",
+            "summarizeBy": "none"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "58ec913d-bbaa-45bd-b64e-52076f18e22e",
+        "partitions": [
+          {
+            "name": "picks_bans",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    picks_bans_Table = dota2_Schema{[Name=\"picks_bans\",Kind=\"Table\"]}[Data]",
+                "in",
+                "    picks_bans_Table"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DateAutoTemplate",
+        "annotations": [
+          {
+            "name": "SQLBI_Template",
+            "value": "Dates"
+          },
+          {
+            "name": "SQLBI_TemplateTable",
+            "value": "DateAutoTemplate"
+          },
+          {
+            "name": "SQLBI_CalendarType",
+            "value": "Calendar"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SQLBI_AttributeTypes",
+                "value": "Date"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "dd/mm/yyyy",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isKey": true,
+            "isNameInferred": true,
+            "lineageTag": "e434b1ef-6e9e-4a1a-83fb-a8014a1bd4b3",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "9d01a026-c455-4a6b-9c89-24cd0c115cd7",
+            "sourceColumn": "[Year]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year Quarter Number",
+            "dataCategory": "Quarters",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "e3ca367d-666c-4068-9a50-58bc65b896aa",
+            "sourceColumn": "[Year Quarter Number]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year Quarter",
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "561e1d80-f7bd-4821-ba59-7b56351fc37e",
+            "sortByColumn": "Year Quarter Number",
+            "sourceColumn": "[Year Quarter]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Quarter",
+            "dataCategory": "QuarterOfYear",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "e8404cc3-5ffe-4295-a2ff-3cc8538db260",
+            "sourceColumn": "[Quarter]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year Month",
+            "dataCategory": "Months",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "74125d63-374f-4bef-89d8-10503c00246d",
+            "sortByColumn": "Year Month Number",
+            "sourceColumn": "[Year Month]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year Month Number",
+            "dataCategory": "Months",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "534bd192-7577-4767-9c08-4ab0a5a43421",
+            "sourceColumn": "[Year Month Number]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Month",
+            "dataCategory": "MonthOfYear",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "5aaba5ed-acee-4225-8a88-14005e71c896",
+            "sortByColumn": "Month Number",
+            "sourceColumn": "[Month]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Month Number",
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "27e00c48-4d9c-4356-a490-483e8c880900",
+            "sourceColumn": "[Month Number]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Day of Week Number",
+            "annotations": [
+              {
+                "name": "SQLBI_AttributeTypes",
+                "value": "DayOfWeek"
+              },
+              {
+                "name": "SQLBI_FilterSafe",
+                "value": "True"
+              }
+            ],
+            "dataCategory": "DayOfWeek",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "3d9bdbc7-c2cc-461b-a2af-3994c589c7d6",
+            "sourceColumn": "[Day of Week Number]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Day of Week",
+            "annotations": [
+              {
+                "name": "SQLBI_FilterSafe",
+                "value": "True"
+              }
+            ],
+            "dataCategory": "DayOfWeek",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "38771151-34f1-4e3e-a50b-8d8d0bd2615c",
+            "sortByColumn": "Day of Week Number",
+            "sourceColumn": "[Day of Week]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "DateWithTransactions",
+            "annotations": [
+              {
+                "name": "SQLBI_AttributeTypes",
+                "value": "DateDuration"
+              }
+            ],
+            "dataType": "boolean",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "30956edc-e49f-4975-b359-fbe38574105b",
+            "sourceColumn": "[DateWithTransactions]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "dataCategory": "Time",
+        "hierarchies": [
+          {
+            "name": "Calendar",
+            "isHidden": true,
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "a30ed4e4-ecfa-48f5-9af2-a546872754d7",
+                "ordinal": 0
+              },
+              {
+                "name": "Month",
+                "column": "Year Month",
+                "lineageTag": "227ba980-a22c-48f6-94e4-88a859326f43",
+                "ordinal": 1
+              },
+              {
+                "name": "Date",
+                "column": "Date",
+                "lineageTag": "54346117-a7ee-4608-84a8-5946926c1861",
+                "ordinal": 2
+              }
+            ],
+            "lineageTag": "7c988e12-e71b-4951-b575-7887e3d449bb"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "f5f6742e-7906-498e-98e3-c389f74efd54",
+        "partitions": [
+          {
+            "name": "DateAutoTemplate",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "--  ",
+                "--     Configuration",
+                "--  ",
+                "VAR __FirstDayOfWeek = 1",
+                "----------------------------------------",
+                "VAR __WeekDayCalculationType = IF ( __FirstDayOfWeek = 0, 7, __FirstDayOfWeek ) + 10",
+                "VAR __Calendar = ",
+                "    VAR __FirstYear = YEAR ( MINX ( { MIN ( 'matches_powerbi'[start_time] ) }, ''[Value] ) )",
+                "    VAR __LastYear =  YEAR ( MAXX ( { MAX ( 'matches_powerbi'[start_time] ) }, ''[Value] ) )",
+                "    RETURN CALENDAR (",
+                "        DATE ( __FirstYear, 1, 1 ),",
+                "        DATE ( __LastYear, 12, 31 )",
+                "    )",
+                "VAR __Step3 = ",
+                "    GENERATE (",
+                "        __Calendar,",
+                "        VAR __IsStandardLocale = IF ( FORMAT( DATE( 2000, 1, 1 ), \"oooo\" ) = \"oooo\", TRUE, FALSE )",
+                "        VAR __MonthFormatString = IF( __IsStandardLocale, \"mmm\", \"ooo\" )",
+                "        VAR __DayFormatString = IF( __IsStandardLocale, \"ddd\", \"aaa\" )",
+                "        VAR __LastTransactionDate = MAXX ( { MAX ( 'matches_powerbi'[start_time] ) }, ''[Value] )",
+                "        VAR __Date = [Date]",
+                "        VAR __YearNumber = YEAR ( __Date )",
+                "        VAR __QuarterNumber = QUARTER ( __Date )",
+                "        VAR __YearQuarterNumber = CONVERT ( __YearNumber * 4 + __QuarterNumber - 1, INTEGER )",
+                "        VAR __MonthNumber = MONTH ( __Date )",
+                "        VAR __WeekDayNumber = WEEKDAY ( __Date, __WeekDayCalculationType )",
+                "        VAR __WeekDay = FORMAT ( __Date, __DayFormatString )",
+                "        RETURN ROW ( ",
+                "            \"Year\", __YearNumber,",
+                "            \"Year Quarter Number\", __YearQuarterNumber,",
+                "            \"Year Quarter\", FORMAT ( __QuarterNumber, \"\\Q0\" ) & \"-\" & FORMAT ( __YearNumber, \"0000\" ),",
+                "            \"Quarter\", FORMAT( __QuarterNumber, \"\\Q0\" ),",
+                "            \"Year Month\", FORMAT ( __Date, __MonthFormatString & \" yyyy\" ),",
+                "            \"Year Month Number\", __YearNumber * 12 + __MonthNumber - 1,",
+                "            \"Month\", FORMAT ( __Date, __MonthFormatString ),",
+                "            \"Month Number\", __MonthNumber,",
+                "            \"Day of Week Number\", __WeekDayNumber,",
+                "            \"Day of Week\", __WeekDay,",
+                "            \"DateWithTransactions\", __Date <= __LastTransactionDate ",
+                "        )",
+                "    )",
+                "RETURN",
+                "    __Step3"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Date",
+        "annotations": [
+          {
+            "name": "SQLBI_Template",
+            "value": "Dates"
+          },
+          {
+            "name": "SQLBI_TemplateTable",
+            "value": "Date"
+          },
+          {
+            "name": "SQLBI_CalendarType",
+            "value": "Calendar"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SQLBI_AttributeTypes",
+                "value": "Date"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "dd/mm/yyyy",
+            "isDataTypeInferred": true,
+            "isKey": true,
+            "isNameInferred": true,
+            "lineageTag": "b703c1a6-208b-4da3-9198-8d76c226c385",
+            "sourceColumn": "DateAutoTemplate[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "9b920eeb-93fe-48b7-b057-e06a2471ab8b",
+            "sourceColumn": "DateAutoTemplate[Year]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year Quarter Number",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "6a5085c6-8f29-4301-ac88-a903ad9bbda8",
+            "sourceColumn": "DateAutoTemplate[Year Quarter Number]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year Quarter",
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "2e5fe4d4-7af4-44ac-a64a-0b14a720192f",
+            "sortByColumn": "Year Quarter Number",
+            "sourceColumn": "DateAutoTemplate[Year Quarter]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Quarter",
+            "dataCategory": "QuarterOfYear",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "0c086296-ec7a-449b-863c-64152d635156",
+            "sourceColumn": "DateAutoTemplate[Quarter]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year Month",
+            "dataCategory": "Months",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "0f326f7b-7d94-4642-8da6-2ae058e50e3d",
+            "sortByColumn": "Year Month Number",
+            "sourceColumn": "DateAutoTemplate[Year Month]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year Month Number",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "94df8300-b7fb-4a4c-aea1-1c767e066e69",
+            "sourceColumn": "DateAutoTemplate[Year Month Number]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Month",
+            "dataCategory": "MonthOfYear",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "13165266-db1d-410a-8e7a-99a926dc6734",
+            "sortByColumn": "Month Number",
+            "sourceColumn": "DateAutoTemplate[Month]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Month Number",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "6dd7739b-d284-4dea-8cfd-6d8e1ffde35e",
+            "sourceColumn": "DateAutoTemplate[Month Number]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Day of Week Number",
+            "annotations": [
+              {
+                "name": "SQLBI_AttributeTypes",
+                "value": "DayOfWeek"
+              },
+              {
+                "name": "SQLBI_FilterSafe",
+                "value": "True"
+              },
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "DayOfWeek",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "005fb4dc-deb5-4160-8cc5-ff4f27068ce8",
+            "sourceColumn": "DateAutoTemplate[Day of Week Number]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Day of Week",
+            "annotations": [
+              {
+                "name": "SQLBI_FilterSafe",
+                "value": "True"
+              }
+            ],
+            "dataCategory": "DayOfWeek",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "1cd91f36-f09c-4b54-86fe-8749e02116e9",
+            "sortByColumn": "Day of Week Number",
+            "sourceColumn": "DateAutoTemplate[Day of Week]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "DateWithTransactions",
+            "annotations": [
+              {
+                "name": "SQLBI_AttributeTypes",
+                "value": "DateDuration"
+              }
+            ],
+            "dataType": "boolean",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "2b8b7a48-9da7-464a-9c24-168e985ef86c",
+            "sourceColumn": "DateAutoTemplate[DateWithTransactions]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "dataCategory": "Time",
+        "hierarchies": [
+          {
+            "name": "Calendar",
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "300eb4f7-f09e-4046-be83-4c493d9f74c2",
+                "ordinal": 0
+              },
+              {
+                "name": "Month",
+                "column": "Year Month",
+                "lineageTag": "e7f678d5-4d8d-4625-a7ef-db9802fcac21",
+                "ordinal": 1
+              },
+              {
+                "name": "Date",
+                "column": "Date",
+                "lineageTag": "60124b7c-6966-4428-99bb-0cded013c007",
+                "ordinal": 2
+              }
+            ],
+            "lineageTag": "87470f5d-d914-44e7-bedb-6866e776c8a7"
+          }
+        ],
+        "lineageTag": "6d54d6f8-5e6e-4935-ab52-a5ff93db7f84",
+        "measures": [
+          {
+            "name": "_ShowValueForDates",
+            "annotations": [
+              {
+                "name": "SQLBI_Template",
+                "value": "TimeIntelligence"
+              },
+              {
+                "name": "SQLBI_TimeIntelligence",
+                "value": "Standard"
+              },
+              {
+                "name": "SQLBI_CalendarType",
+                "value": "Calendar"
+              }
+            ],
+            "displayFolder": "Hidden Time Intelligence",
+            "expression": [
+              "",
+              "VAR __LastDateWithData =",
+              "    CALCULATE (",
+              "        MAXX ( { MAX ( 'matches_powerbi'[start_time] ) }, ''[Value] ),",
+              "        REMOVEFILTERS ()",
+              "    )",
+              "VAR __FirstDateVisible =",
+              "    MIN ( 'Date'[Date] )",
+              "VAR __Result =",
+              "    __FirstDateVisible <= __LastDateWithData",
+              "RETURN",
+              "    __Result"
+            ],
+            "isHidden": true,
+            "lineageTag": "cb35ad55-883f-4d90-ad8c-98ab4f090f44"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Date",
+            "mode": "import",
+            "source": {
+              "expression": "DateAutoTemplate",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "players_matches",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "match_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "1ffcff30-c409-4881-8033-17bf5a357a09",
+            "sourceColumn": "match_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "account_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4c20ea8f-d293-415e-a4f1-ea06f0545a0d",
+            "sourceColumn": "account_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "player_slot",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "cb67f92d-9503-4bfa-af7c-a9eb23cb1c0d",
+            "sourceColumn": "player_slot",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "hero_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0d628dac-9c44-4487-9ce3-eb109c79ae94",
+            "sourceColumn": "hero_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "side",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "if(players_matches[player_slot] < 128, \"Radiant\", \"Dire\")",
+            "isDataTypeInferred": true,
+            "lineageTag": "f6b4c099-2770-4dc0-b986-8597bcd3e2ce",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "win",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "if(OR(AND(players_matches[side]=\"Radiant\", RELATED(matches_powerbi[radiant_win])=TRUE()), AND(players_matches[side]=\"Dire\", RELATED(matches_powerbi[radiant_win])=FALSE())), 1, 0)",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "e4155f52-9d94-40f9-ba62-5ae263633903",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "43470b1c-981e-48ae-9ef6-987642846a71",
+        "measures": [
+          {
+            "name": "Wins",
+            "expression": "CALCULATE(SUM(players_matches[win]))",
+            "formatString": "0",
+            "lineageTag": "f492ff1b-4405-4e80-a918-61b5fd7d0af5"
+          },
+          {
+            "name": "Total_Matches",
+            "expression": "CALCULATE(DISTINCTCOUNT(players_matches[match_id]))",
+            "formatString": "0",
+            "lineageTag": "74ef0552-cacd-46ab-9a19-d9cabffa86d7"
+          },
+          {
+            "name": "Losses",
+            "expression": "[Total_Matches] - [Wins]",
+            "formatString": "0",
+            "lineageTag": "5afc2ecf-b6f3-4549-b555-e65f07770f3e"
+          },
+          {
+            "name": "Win_Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "[Wins] / [Losses]",
+            "lineageTag": "2a22bc9f-8f4a-4936-bc07-a163a1e42117"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "players_matches",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
+                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    players_matches_Table = dota2_Schema{[Name=\"players_matches\",Kind=\"Table\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(players_matches_Table,{{\"account_id\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
