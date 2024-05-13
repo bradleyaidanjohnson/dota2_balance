@@ -58,10 +58,10 @@
           "z": 1000.00
         },
         {
-          "config": "{\"name\":\"201e7f13af88c53218a0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":703.2989690721649,\"z\":11000,\"width\":1076.2886597938145,\"height\":484.3298969072165,\"tabOrder\":11000}}],\"singleVisual\":{\"visualType\":\"htmlContent443BE3AD55E043BF878BED274D3A6855\",\"projections\":{\"content\":[{\"queryRef\":\"Characters.ability_1_vid_code\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Characters\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"ability_1_vid_code\"},\"Name\":\"Characters.ability_1_vid_code\",\"NativeReferenceName\":\"ability_1_vid_code\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"contentFormatting\":[{\"properties\":{\"showRawHtml\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"align\":{\"expr\":{\"Literal\":{\"Value\":\"'right'\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "config": "{\"name\":\"201e7f13af88c53218a0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":703.2989690721649,\"z\":11000,\"width\":974.2268041237114,\"height\":484.3298969072165,\"tabOrder\":11000}}],\"singleVisual\":{\"visualType\":\"htmlContent443BE3AD55E043BF878BED274D3A6855\",\"projections\":{\"content\":[{\"queryRef\":\"Characters.ability_1_vid_code\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Characters\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"ability_1_vid_code\"},\"Name\":\"Characters.ability_1_vid_code\",\"NativeReferenceName\":\"ability_1_vid_code\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"contentFormatting\":[{\"properties\":{\"showRawHtml\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"align\":{\"expr\":{\"Literal\":{\"Value\":\"'right'\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
           "filters": "[]",
           "height": 484.33,
-          "width": 1076.29,
+          "width": 974.23,
           "x": 0.00,
           "y": 703.30,
           "z": 11000.00
