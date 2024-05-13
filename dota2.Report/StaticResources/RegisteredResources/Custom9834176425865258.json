@@ -1,0 +1,17 @@
+{
+  "name": "Custom",
+  "textClasses": {
+    "label": {
+      "fontFace": "radiance"
+    },
+    "callout": {
+      "fontFace": "reaver"
+    },
+    "title": {
+      "fontFace": "radiance"
+    },
+    "header": {
+      "fontFace": "radiance"
+    }
+  }
+}
