@@ -12,7 +12,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Characters\",\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\"]"
+        "value": "[\"Characters2\",\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\"]"
       },
       {
         "name": "PBI_ProTooling",
@@ -37,6 +37,34 @@
       "returnErrorValuesAsNull": true
     },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "Characters2",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Exception"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\jemma\\OneDrive\\Documents\\Bradley\\Computer Science Studies\\Data Analysis\\Le Wagon\\DOTA 2\\hero button images.xlsx\"), null, true),",
+          "    Characters_Sheet = Source{[Item=\"Characters\",Kind=\"Sheet\"]}[Data],",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(Characters_Sheet,{{\"Column1\", type text}, {\"Column2\", type text}, {\"Column3\", type text}}),",
+          "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+          "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"names\", type text}, {\"button_images\", type text}, {\"video\", type text}}),",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type1\",{\"video_name\", \"Column9\", \"video\", \"Column6\"})",
+          "in",
+          "    #\"Removed Columns\""
+        ],
+        "kind": "m",
+        "lineageTag": "390454e8-d03b-4542-9bef-96f90347a40c"
+      }
+    ],
     "extendedProperties": [
       {
         "name": "SQLBI_BRAVO_ManageDatesConfiguration",
@@ -128,14 +156,6 @@
         "toTable": "heroes_powerbi"
       },
       {
-        "name": "09fead60-c6c6-41b2-862b-e7345f7b2786",
-        "crossFilteringBehavior": "bothDirections",
-        "fromColumn": "names",
-        "fromTable": "Characters",
-        "toColumn": "localized_name",
-        "toTable": "heroes_powerbi"
-      },
-      {
         "name": "e87c967e-5429-4b3d-a680-798a7b561c98",
         "crossFilteringBehavior": "bothDirections",
         "fromColumn": "secondary_key",
@@ -187,12 +207,21 @@
         "fromTable": "players_matches",
         "toColumn": "id",
         "toTable": "heroes_powerbi"
+      },
+      {
+        "name": "1144a091-7671-4d1a-bc62-4862adc4ed9e",
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "names",
+        "fromTable": "Characters",
+        "toColumn": "localized_name",
+        "toTable": "heroes_powerbi"
       }
     ],
     "sourceQueryCulture": "en-GB",
     "tables": [
       {
-        "name": "Characters",
+        "name": "items_powerbi",
         "annotations": [
           {
             "name": "PBI_ResultType",
@@ -201,194 +230,6 @@
           {
             "name": "PBI_NavigationStepName",
             "value": "Navigation"
-          }
-        ],
-        "columns": [
-          {
-            "name": "names",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "17a61e0f-88a8-4fd4-9b47-1d5e94cc6963",
-            "sourceColumn": "names",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "button_images",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "9d50ad21-4823-47c2-883d-5cb1cce3b4ef",
-            "sourceColumn": "button_images",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "title",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "eaa6b603-edb0-4e2e-b5f6-8b172085b599",
-            "sourceColumn": "title",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "name_caps",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "3b54381d-88b2-495f-ab4e-baf263a6cb47",
-            "sourceColumn": "name_caps",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "video_resized",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "bb898bf0-2a4d-4553-b7f1-686d009a8a63",
-            "sourceColumn": "video_resized",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "ability_1_class_start",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "36fcad6e-6528-4c70-be77-83c4f8871011",
-            "sourceColumn": "ability_1_class_start",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "ability_1_img_start",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "1fac4261-eec2-4162-8e3e-a2e1583af11c",
-            "sourceColumn": "ability_1_img_start",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "ability_1_img_end",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "dd59332f-7993-48a8-b91e-511777b62370",
-            "sourceColumn": "ability_1_img_end",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "ability_1_img",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "a25a4584-4110-47a7-8cd8-4d1ad931bcdf",
-            "sourceColumn": "ability_1_img",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "ability_1_video_html_start",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "86baef59-e0d5-46c1-8676-f3cba150bd5a",
-            "sourceColumn": "ability_1_video_html_start",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "ability_1_video_html_start_1",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "61d84d1c-ecb0-4809-8da9-5d4b87ab585f",
-            "sourceColumn": "ability_1_video_html_start_1",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "ability_1_vid_code",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "4c0da8fa-4a8f-45e9-9c1c-aa352962fcc7",
-            "sourceColumn": "ability_1_vid_code",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "98734b22-81c6-4827-8b5b-527db404e9fe",
-        "partitions": [
-          {
-            "name": "Characters",
-            "mode": "import",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\jemma\\OneDrive\\Documents\\Bradley\\Computer Science Studies\\Data Analysis\\Le Wagon\\DOTA 2\\hero button images.xlsx\"), null, true),",
-                "    Characters_Sheet = Source{[Item=\"Characters\",Kind=\"Sheet\"]}[Data],",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(Characters_Sheet,{{\"Column1\", type text}, {\"Column2\", type text}, {\"Column3\", type text}}),",
-                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
-                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"names\", type text}, {\"button_images\", type text}, {\"video\", type text}}),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type1\",{\"video_name\", \"Column9\", \"video\", \"Column6\"})",
-                "in",
-                "    #\"Removed Columns\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "items_powerbi",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
           }
         ],
         "columns": [
@@ -485,9 +326,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    items_powerbi_View = dota2_Schema{[Name=\"items_powerbi\",Kind=\"View\"]}[Data],",
                 "    #\"Added Custom\" = Table.AddColumn(items_powerbi_View, \"primary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\") & \"_\" & Text.From([player_num]))",
                 "in",
@@ -504,6 +345,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -600,9 +445,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    killed_powerbi_View = dota2_Schema{[Name=\"killed_powerbi\",Kind=\"View\"]}[Data],",
                 "    #\"Added Custom\" = Table.AddColumn(killed_powerbi_View, \"Custom\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\") & \"_\" & Text.From([player_num])),",
                 "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Custom\",{{\"Custom\", \"primary_key\"}})",
@@ -620,6 +465,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -990,9 +839,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    matches_powerbi_View = dota2_Schema{[Name=\"matches_powerbi\",Kind=\"View\"]}[Data],",
                 "    #\"Added Custom\" = Table.AddColumn(matches_powerbi_View, \"Custom\", each [start_time]),",
                 "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Custom\",{{\"Custom\", \"start_time_date\"}}),",
@@ -1011,6 +860,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1236,9 +1089,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    players_powerbi_View = dota2_Schema{[Name=\"players_powerbi\",Kind=\"View\"]}[Data],",
                 "    #\"Added Custom\" = Table.AddColumn(players_powerbi_View, \"primary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\") & \"_\" & Text.From([player_num])),",
                 "    #\"Added Custom1\" = Table.AddColumn(#\"Added Custom\", \"secondary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\"))",
@@ -1256,6 +1109,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1366,9 +1223,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    teamfights_powerbi_View = dota2_Schema{[Name=\"teamfights_powerbi\",Kind=\"View\"]}[Data],",
                 "    #\"Added Custom\" = Table.AddColumn(teamfights_powerbi_View, \"primary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\"))",
                 "in",
@@ -1385,6 +1242,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1481,9 +1342,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    abilities_powerbi_Table = dota2_Schema{[Name=\"abilities_powerbi\",Kind=\"Table\"]}[Data],",
                 "    #\"Added Custom\" = Table.AddColumn(abilities_powerbi_Table, \"Custom\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\") & \"_\" & Text.From([player_num])),",
                 "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Custom\",{{\"Custom\", \"primary_key\"}})",
@@ -1501,6 +1362,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1541,9 +1406,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    ability_names_powerbi_Table = dota2_Schema{[Name=\"ability_names_powerbi\",Kind=\"Table\"]}[Data]",
                 "in",
                 "    ability_names_powerbi_Table"
@@ -1559,6 +1424,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1599,9 +1468,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    item_names_powerbi_Table = dota2_Schema{[Name=\"item_names_powerbi\",Kind=\"Table\"]}[Data]",
                 "in",
                 "    item_names_powerbi_Table"
@@ -1617,6 +1486,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1657,9 +1530,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    killee_names_powerbi_Table = dota2_Schema{[Name=\"killee_names_powerbi\",Kind=\"Table\"]}[Data]",
                 "in",
                 "    killee_names_powerbi_Table"
@@ -1675,6 +1548,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1768,9 +1645,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    heroes_powerbi_View = dota2_Schema{[Name=\"heroes_powerbi\",Kind=\"View\"]}[Data]",
                 "in",
                 "    heroes_powerbi_View"
@@ -1786,6 +1663,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1826,9 +1707,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    roles_Table = dota2_Schema{[Name=\"roles\",Kind=\"Table\"]}[Data]",
                 "in",
                 "    roles_Table"
@@ -1844,6 +1725,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1927,9 +1812,9 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    picks_bans_Table = dota2_Schema{[Name=\"picks_bans\",Kind=\"Table\"]}[Data]",
                 "in",
                 "    picks_bans_Table"
@@ -2517,6 +2402,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -2648,13 +2537,321 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = GoogleBigQuery.Database(),",
-                "    #\"integral-cell-418310\" = Source{[Name=\"integral-cell-418310\"]}[Data],",
-                "    dota2_Schema = #\"integral-cell-418310\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    players_matches_Table = dota2_Schema{[Name=\"players_matches\",Kind=\"Table\"]}[Data],",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(players_matches_Table,{{\"account_id\", Int64.Type}})",
                 "in",
                 "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Characters",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "names",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "06374edb-deca-4bba-8460-e617900e72bc",
+            "sourceColumn": "names",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "button_images",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e55abfb5-deab-4fa4-b081-703fd3bc3a84",
+            "sourceColumn": "button_images",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "title",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c2ced9bf-7196-45b3-8d53-ef28251345dc",
+            "sourceColumn": "title",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name_caps",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "629e9800-d6ca-4930-ae48-6cc623284e7a",
+            "sourceColumn": "name_caps",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "video_resized",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5c50625e-d01c-46f9-a0de-f1aa9b0fb131",
+            "sourceColumn": "video_resized",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_3",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9728b39d-5ed3-40e3-8d44-18423cd8692a",
+            "sourceColumn": "_3",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_6",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "29cf4c29-dd81-4d19-9ba4-38aebe9817a8",
+            "sourceColumn": "_6",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_10",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1a763a35-9205-49e3-bd2b-cd56e79785b4",
+            "sourceColumn": "_10",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_14",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "632fab5e-c1c2-45cc-b43a-989a1cca4574",
+            "sourceColumn": "_14",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_18",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4d1b8966-7375-414c-84cb-744e16a90f90",
+            "sourceColumn": "_18",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_21",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b148db7c-69ae-4db7-ab5e-0efeb05b2029",
+            "sourceColumn": "_21",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_25",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6e28f7dd-d456-44af-bece-f33f6380d0d8",
+            "sourceColumn": "_25",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_29",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0159629a-5c80-432d-b1c8-bbd658d5e85f",
+            "sourceColumn": "_29",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_33",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e7a30dbb-f4db-43f5-adcd-5c560b695413",
+            "sourceColumn": "_33",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_36",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "26e6f464-8b44-40ad-8264-1c53f644dc9f",
+            "sourceColumn": "_36",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_40",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5c391301-90d8-4393-a1b5-e2df0a42d6dc",
+            "sourceColumn": "_40",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_44",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9ed70620-491d-41df-9986-0db0a2970a7c",
+            "sourceColumn": "_44",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_48",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "89c7c230-4545-4eb4-8208-ae7db804d932",
+            "sourceColumn": "_48",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_51",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "11885fde-67be-48df-9a1d-fd02d78f4dec",
+            "sourceColumn": "_51",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_55",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "608c16e3-4b72-475f-a3f4-278f2774751a",
+            "sourceColumn": "_55",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_59",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "daa89f82-71eb-44b7-b1d3-5cb69f6e16d6",
+            "sourceColumn": "_59",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "10714272-ffed-47c4-acd9-5bcb17dbee50",
+        "partitions": [
+          {
+            "name": "Characters",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleSheets.Contents(\"https://docs.google.com/spreadsheets/d/1zLxE1yP648A_V_HPK0kZu2wDrG2vRDaf4A3UJzb9RPk/edit?usp=sharing\"),",
+                "    Characters_Table = Source{[name=\"Characters\",ItemKind=\"Table\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Characters_Table, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"names\", type text}, {\"button_images\", type text}, {\"title\", type text}, {\"name_caps\", type text}, {\"video_resized\", type text}, {\"\", Int64.Type}, {\"_1\", Int64.Type}, {\"_2\", Int64.Type}, {\"_3\", type text}, {\"_4\", Int64.Type}, {\"_5\", Int64.Type}, {\"_6\", type text}, {\"_7\", Int64.Type}, {\"_8\", Int64.Type}, {\"_9\", Int64.Type}, {\"_10\", type text}, {\"_11\", Int64.Type}, {\"_12\", Int64.Type}, {\"_13\", Int64.Type}, {\"_14\", type text}, {\"_15\", Int64.Type}, {\"_16\", Int64.Type}, {\"_17\", Int64.Type}, {\"_18\", type text}, {\"_19\", Int64.Type}, {\"_20\", Int64.Type}, {\"_21\", type text}, {\"_22\", Int64.Type}, {\"_23\", Int64.Type}, {\"_24\", Int64.Type}, {\"_25\", type text}, {\"_26\", Int64.Type}, {\"_27\", Int64.Type}, {\"_28\", Int64.Type}, {\"_29\", type text}, {\"_30\", Int64.Type}, {\"_31\", Int64.Type}, {\"_32\", Int64.Type}, {\"_33\", type text}, {\"_34\", Int64.Type}, {\"_35\", Int64.Type}, {\"_36\", type text}, {\"_37\", Int64.Type}, {\"_38\", Int64.Type}, {\"_39\", Int64.Type}, {\"_40\", type text}, {\"_41\", Int64.Type}, {\"_42\", Int64.Type}, {\"_43\", Int64.Type}, {\"_44\", type text}, {\"_45\", Int64.Type}, {\"_46\", Int64.Type}, {\"_47\", Int64.Type}, {\"_48\", type text}, {\"_49\", Int64.Type}, {\"_50\", Int64.Type}, {\"_51\", type text}, {\"_52\", Int64.Type}, {\"_53\", Int64.Type}, {\"_54\", Int64.Type}, {\"_55\", type text}, {\"_56\", Int64.Type}, {\"_57\", Int64.Type}, {\"_58\", Int64.Type}, {\"_59\", type text}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"_15\", \"_16\", \"_17\", \"_19\", \"_20\", \"_22\", \"_23\", \"_24\", \"_26\", \"_27\", \"_28\", \"_30\", \"_31\", \"_32\", \"_34\", \"_35\", \"_37\", \"_38\", \"_39\", \"_41\", \"_42\", \"_43\", \"_50\", \"_52\", \"_53\", \"_54\", \"_56\", \"_57\", \"_58\", \"_45\", \"_46\", \"_47\", \"_49\", \"_7\", \"_8\", \"_9\", \"_11\", \"_12\", \"_13\", \"_1\", \"_2\", \"_4\", \"_5\", \"\"})",
+                "in",
+                "    #\"Removed Columns\""
               ],
               "type": "m"
             }
