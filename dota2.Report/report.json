@@ -1,5 +1,5 @@
 {
-  "config": "{\"version\":\"5.53\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU02\",\"version\":\"5.53\",\"type\":2},\"customTheme\":{\"name\":\"Custom9834176425865258.json\",\"version\":\"5.53\",\"type\":1}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}",
+  "config": "{\"version\":\"5.53\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU02\",\"version\":\"5.53\",\"type\":2},\"customTheme\":{\"name\":\"Custom9834176425865258.json\",\"version\":\"5.53\",\"type\":1}},\"activeSectionIndex\":1,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}",
   "layoutOptimization": 0,
   "pods": [
     {
@@ -200,7 +200,7 @@
       "filters": "[]",
       "height": 720.00,
       "name": "ReportSection284cf8421ba115864b14",
-      "ordinal": 3,
+      "ordinal": 4,
       "visualContainers": [
         {
           "config": "{\"name\":\"6415a430385b77716d81\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":353.1958762886598,\"z\":0,\"width\":1450.5154639175257,\"height\":622.2680412371134,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"htmlContent443BE3AD55E043BF878BED274D3A6855\",\"projections\":{\"content\":[{\"queryRef\":\"Characters.title\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Characters\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"title\"},\"Name\":\"Characters.title\",\"NativeReferenceName\":\"title\"}]},\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
@@ -239,7 +239,7 @@
       "filters": "[]",
       "height": 720.00,
       "name": "ReportSection57e0222d10eb4b2e43ae",
-      "ordinal": 1,
+      "ordinal": 2,
       "visualContainers": [
         {
           "config": "{\"name\":\"00d560338ca8f0d330be\",\"layouts\":[{\"id\":0,\"position\":{\"x\":150,\"y\":140,\"width\":300,\"height\":300,\"z\":1000,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"slicer\",\"drillFilterOtherVisuals\":true}}",
@@ -323,7 +323,7 @@
       "filters": "[]",
       "height": 720.00,
       "name": "ReportSectiona51145f5df279d357b3d",
-      "ordinal": 2,
+      "ordinal": 3,
       "visualContainers": [
         {
           "config": "{\"name\":\"b52805d3701f6819e1d9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":1245.1546391752577,\"height\":666.1855670103092,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(items_powerbi.match_id)\"}],\"Category\":[{\"queryRef\":\"Date.Year Quarter\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"i\",\"Entity\":\"items_powerbi\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"i\"}},\"Property\":\"match_id\"}},\"Function\":2},\"Name\":\"Sum(items_powerbi.match_id)\",\"NativeReferenceName\":\"Count of match_id1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Year Quarter\"},\"Name\":\"Date.Year Quarter\",\"NativeReferenceName\":\"Year Quarter\"}]},\"drillFilterOtherVisuals\":true}}",
@@ -335,6 +335,17 @@
           "z": 0.00
         }
       ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Head to Head",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSectione1bc2995671ba71851b2",
+      "ordinal": 1,
+      "visualContainers": [],
       "width": 1280.00
     }
   ],
