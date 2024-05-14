@@ -12,7 +12,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\",\"Sheet3\"]"
+        "value": "[\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\",\"Sheet3\",\"hero_abils\",\"hero_scrape\"]"
       },
       {
         "name": "PBI_ProTooling",
@@ -190,9 +190,18 @@
         "toTable": "heroes_powerbi"
       },
       {
-        "name": "AutoDetected_269e5b7f-c1b2-46f2-8c1f-e869e436d01d",
-        "fromColumn": "names",
-        "fromTable": "Sheet3",
+        "name": "7de4ecd4-54ab-4934-ac04-aeab1366f215",
+        "fromColumn": "hero_name",
+        "fromTable": "hero_abils",
+        "toColumn": "localized_name",
+        "toTable": "heroes_powerbi"
+      },
+      {
+        "name": "c7b279a0-bdb7-42bb-b30d-193e6c2902a4",
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "char_name",
+        "fromTable": "hero_scrape",
         "toColumn": "localized_name",
         "toTable": "heroes_powerbi"
       }
@@ -3411,6 +3420,286 @@
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"names\", type text}, {\"\", Int64.Type}, {\"ab_title\", type text}, {\"ab_text\", type text}, {\"ab_img\", type text}, {\"ab_vid\", type text}})",
                 "in",
                 "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "hero_abils",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "hero_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "14563ff6-8478-4013-a5cc-64cdd821b490",
+            "sourceColumn": "hero_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "abil_num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "91c6416f-b997-48c2-81d9-c7daeccba3f3",
+            "sourceColumn": "abil_num",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "abil_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0311680c-36db-451f-8c86-38eae92df04d",
+            "sourceColumn": "abil_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "abil_text",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a2a81902-c28e-4bac-82ef-df2b1455f66b",
+            "sourceColumn": "abil_text",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "abil_img",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "975026eb-bcf4-4899-9a2f-b8c5fa5f7155",
+            "sourceColumn": "abil_img",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "abil_vid",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c2442b73-7931-4106-aa63-af3026a5b582",
+            "sourceColumn": "abil_vid",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "abil_vid_html",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "38080467-f37e-4ab6-b376-791ec51c374d",
+            "sourceColumn": "abil_vid_html",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "abil_img_html",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ec876255-736a-451e-bd53-a1bb33d29a77",
+            "sourceColumn": "abil_img_html",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "e8f7610b-3b0d-4a23-b5d6-415a547589a1",
+        "partitions": [
+          {
+            "name": "hero_abils",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleSheets.Contents(\"https://docs.google.com/spreadsheets/d/1JhQDKRX0o7GZH9CVEuSj8-r1oNx2XGYzfaTVH3tkCDI/edit?usp=sharing\"),",
+                "    hero_abils_Table = Source{[name=\"hero_abils\",ItemKind=\"Table\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(hero_abils_Table, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"hero_name\", type text}, {\"abil_num\", Int64.Type}, {\"abil_name\", type text}, {\"abil_text\", type text}, {\"abil_img\", type text}, {\"abil_vid\", type text}, {\"abil_vid_html\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "hero_scrape",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "char_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2f87fead-9d8c-4e53-a3d3-9c5725cadec7",
+            "sourceColumn": "char_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "char_attr_img",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bf78ead6-c365-4dec-86a4-82a71b972ee9",
+            "sourceColumn": "char_attr_img",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "char_attr_txt",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6cb60e89-56a4-4dba-8628-cbed6176b1a4",
+            "sourceColumn": "char_attr_txt",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "char_blurb",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "306d6fe9-ec03-4773-8ec6-6539ee5e0c34",
+            "sourceColumn": "char_blurb",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "char_history",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4e779346-a2cc-46b4-862e-90a94388c863",
+            "sourceColumn": "char_history",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "char_type_img",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "57a088c9-c2b2-4b4d-b6f6-ca47634b8e36",
+            "sourceColumn": "char_type_img",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "char_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d723989f-a4ab-4388-9d62-506eff6f2269",
+            "sourceColumn": "char_type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "char_attr_img_html",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c6bcad6b-b4fa-4779-ad7e-5df3ec19fa61",
+            "sourceColumn": "char_attr_img_html",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "334d1788-d0a1-4a5f-b9e1-9908de85ef08",
+        "partitions": [
+          {
+            "name": "hero_scrape",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleSheets.Contents(\"https://docs.google.com/spreadsheets/d/1JhQDKRX0o7GZH9CVEuSj8-r1oNx2XGYzfaTVH3tkCDI/edit?usp=sharing\"),",
+                "    hero_scrape_Table = Source{[name=\"hero_scrape\",ItemKind=\"Table\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(hero_scrape_Table, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"abil1title\", type text}, {\"abil1text\", type text}, {\"abil1img\", type text}, {\"abil1vid\", type text}, {\"abil2title\", type text}, {\"abil2text\", type text}, {\"abil2img\", type text}, {\"abil2vid\", type text}, {\"abil3title\", type text}, {\"abil3text\", type text}, {\"abil3img\", type text}, {\"abil3vid\", type text}, {\"abil4title\", type text}, {\"abil4text\", type text}, {\"abil4img\", type text}, {\"abil4vid\", type text}, {\"char_attr_img\", type text}, {\"char_attr_txt\", type text}, {\"char_name\", type text}, {\"char_blurb\", type text}, {\"char_history\", type text}, {\"char_type_img\", type text}, {\"char_type\", type text}, {\"abil5title\", type text}, {\"abil5text\", type text}, {\"abil5img\", type text}, {\"abil5vid\", type text}, {\"abil6title\", type text}, {\"abil6text\", type text}, {\"abil6img\", type text}, {\"abil6vid\", type text}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"abil1text\", \"abil1img\", \"abil1vid\", \"abil2title\", \"abil2text\", \"abil2img\", \"abil2vid\", \"abil3title\", \"abil3text\", \"abil3img\", \"abil3vid\", \"abil4title\", \"abil4text\", \"abil4img\", \"abil4vid\", \"abil5img\", \"abil5vid\", \"abil6title\", \"abil6text\", \"abil6img\", \"abil6vid\", \"abil5title\", \"abil5text\"}),",
+                "    #\"Reordered Columns\" = Table.ReorderColumns(#\"Removed Columns\",{\"char_name\", \"abil1title\", \"char_attr_img\", \"char_attr_txt\", \"char_blurb\", \"char_history\", \"char_type_img\", \"char_type\"}),",
+                "    #\"Removed Columns1\" = Table.RemoveColumns(#\"Reordered Columns\",{\"abil1title\"})",
+                "in",
+                "    #\"Removed Columns1\""
               ],
               "type": "m"
             }
