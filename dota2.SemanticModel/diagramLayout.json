@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
-        "y": 0
+        "x": 2,
+        "y": 11
       },
       "nodes": [
         {
@@ -49,8 +49,8 @@
         },
         {
           "location": {
-            "x": 1512.602182454541,
-            "y": 502
+            "x": 1440.602182454541,
+            "y": 588
           },
           "nodeIndex": "item_names_powerbi",
           "nodeLineageTag": "96e9f718-d92c-4af0-9cb3-c00a39ca8985",
@@ -62,8 +62,8 @@
         },
         {
           "location": {
-            "x": 1172.7388044047316,
-            "y": 888.329309159767
+            "x": 1163.7388044047316,
+            "y": 915.329309159767
           },
           "nodeIndex": "items_powerbi",
           "nodeLineageTag": "e97244f7-076d-42cf-a032-63fa189541f2",
@@ -114,8 +114,8 @@
         },
         {
           "location": {
-            "x": 461.41981289134947,
-            "y": 767.82570422348317
+            "x": 396.41981289134947,
+            "y": 812.82570422348317
           },
           "nodeIndex": "players_powerbi",
           "nodeLineageTag": "06c3784e-5bb5-4586-b066-dbfdc1c86185",
@@ -179,8 +179,8 @@
         },
         {
           "location": {
-            "x": 802.602182454541,
-            "y": 562.16465457988352
+            "x": 642.602182454541,
+            "y": 588.16465457988352
           },
           "nodeIndex": "Date",
           "nodeLineageTag": "6d54d6f8-5e6e-4935-ab52-a5ff93db7f84",
@@ -205,8 +205,8 @@
         },
         {
           "location": {
-            "x": 161.60218245454098,
-            "y": 158
+            "x": 266.602182454541,
+            "y": 186
           },
           "nodeIndex": "players_matches",
           "nodeLineageTag": "43470b1c-981e-48ae-9ef6-987642846a71",
@@ -267,6 +267,19 @@
             "width": 234
           },
           "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 840,
+            "y": 289.16465457988352
+          },
+          "nodeIndex": "players_final_items",
+          "nodeLineageTag": "d3eb68b2-ef20-4359-b14d-2f942bdedae4",
+          "size": {
+            "height": 238,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

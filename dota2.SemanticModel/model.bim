@@ -12,7 +12,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\",\"Sheet3\",\"hero_abils\",\"hero_scrape\",\"Characters 2\"]"
+        "value": "[\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\",\"Sheet3\",\"hero_abils\",\"hero_scrape\",\"Characters 2\",\"players_final_items\"]"
       },
       {
         "name": "PBI_ProTooling",
@@ -81,13 +81,6 @@
         "fromTable": "teamfights_powerbi",
         "toColumn": "match_id",
         "toTable": "matches_powerbi"
-      },
-      {
-        "name": "AutoDetected_bf089be1-aa8f-4f10-830e-87602369450c",
-        "fromColumn": "item_id",
-        "fromTable": "items_powerbi",
-        "toColumn": "item_id",
-        "toTable": "item_names_powerbi"
       },
       {
         "name": "AutoDetected_e65ff684-f717-4108-ab38-9bf36871816c",
@@ -221,6 +214,21 @@
         "fromTable": "players_matches",
         "toColumn": "match_id",
         "toTable": "matches_powerbi"
+      },
+      {
+        "name": "cc114be8-e3fd-446c-8ecb-262e610240bd",
+        "fromColumn": "item",
+        "fromTable": "players_final_items",
+        "toColumn": "item_id",
+        "toTable": "item_names_powerbi"
+      },
+      {
+        "name": "897b8c5f-6e6f-4e98-9539-2c55a03f3d12",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "primary_key",
+        "fromTable": "players_final_items",
+        "toColumn": "primary_key",
+        "toTable": "players_matches"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -253,62 +261,6 @@
             "summarizeBy": "sum"
           },
           {
-            "name": "fight",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "1dbb7c58-04f2-4235-99e2-3bfc569d42db",
-            "sourceColumn": "fight",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "player_num",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "4c06a7c0-569b-4e60-905b-192dc260621e",
-            "sourceColumn": "player_num",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "item_id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "981ffdf2-76d7-4071-9831-120cf851976a",
-            "sourceColumn": "item_id",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "uses",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "c92922fc-ea1f-4ec4-a2d0-480cb0d4dae1",
-            "sourceColumn": "uses",
-            "summarizeBy": "sum"
-          },
-          {
             "name": "primary_key",
             "annotations": [
               {
@@ -319,6 +271,64 @@
             "dataType": "string",
             "lineageTag": "607cbbf7-205f-473a-9c6e-b384dc7a699c",
             "sourceColumn": "primary_key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "account_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f337d500-9db6-4ddd-8985-e690c9921de0",
+            "sourceColumn": "account_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "hero_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3dec9597-47c5-42da-bd37-5c2f05510937",
+            "sourceColumn": "hero_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "player_slot",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "bf008ff1-bef2-4d35-87f6-d7a8cc3457d6",
+            "sourceColumn": "player_slot",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "secondary_key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "62c4ecfb-837c-4b8c-987c-8099011df28e",
+            "sourceColumn": "secondary_key",
             "summarizeBy": "none"
           }
         ],
@@ -334,8 +344,8 @@
                 "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
                 "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
                 "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
-                "    items_powerbi_View = dota2_Schema{[Name=\"items_powerbi\",Kind=\"View\"]}[Data],",
-                "    #\"Added Custom\" = Table.AddColumn(items_powerbi_View, \"primary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\") & \"_\" & Text.From([player_num]))",
+                "    players_matches_Table = dota2_Schema{[Name=\"players_matches\",Kind=\"Table\"]}[Data],",
+                "    #\"Added Custom\" = Table.AddColumn(players_matches_Table, \"secondary_key\", each [match_id] & \"-\" & [hero_id])",
                 "in",
                 "    #\"Added Custom\""
               ],
@@ -2534,7 +2544,7 @@
                 "value": "Automatic"
               }
             ],
-            "dataType": "int64",
+            "dataType": "double",
             "formatString": "0",
             "lineageTag": "4c20ea8f-d293-415e-a4f1-ea06f0545a0d",
             "sourceColumn": "account_id",
@@ -2596,11 +2606,36 @@
             "formatString": "0",
             "isDataTypeInferred": true,
             "lineageTag": "e4155f52-9d94-40f9-ba62-5ae263633903",
-            "summarizeBy": "none",
+            "summarizeBy": "sum",
             "type": "calculated"
+          },
+          {
+            "name": "primary_key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "cb7d4610-bbf7-4b9d-907f-063b18490ac2",
+            "sourceColumn": "primary_key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "secondary_key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bd67ede1-271f-4130-b109-403146f9e6d2",
+            "sourceColumn": "secondary_key",
+            "summarizeBy": "none"
           }
         ],
-        "excludeFromModelRefresh": true,
         "lineageTag": "43470b1c-981e-48ae-9ef6-987642846a71",
         "measures": [
           {
@@ -2697,9 +2732,9 @@
                 "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
                 "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
                 "    players_matches_Table = dota2_Schema{[Name=\"players_matches\",Kind=\"Table\"]}[Data],",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(players_matches_Table,{{\"account_id\", Int64.Type}})",
+                "    #\"Added Custom\" = Table.AddColumn(players_matches_Table, \"secondary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([hero_id]), 3, \"0\"))",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"Added Custom\""
               ],
               "type": "m"
             }
@@ -4650,6 +4685,110 @@
                 "    #\"Removed Columns\" = Table.RemoveColumns(#\"Promoted Headers\",{\"ability_1_class_start\", \"ability_1_img_start\", \"ability_1_img_end\", \"ability_1_video_html_start\", \"ability_1_video_html_start_1\", \"ab1_class_start\", \"ab1_text_start\", \"\"})",
                 "in",
                 "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "players_final_items",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "match_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "ce4ea381-f53e-44b1-b509-5e56f8c5c596",
+            "sourceColumn": "match_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "account_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a6ff2cc8-1e44-46d3-9c61-726667c601b0",
+            "sourceColumn": "account_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "item_slot",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "bb9cc618-4c70-4593-9d1f-5b58d11ab3da",
+            "sourceColumn": "item_slot",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "item",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f872e40c-5b29-4b1e-bde8-b8d710441561",
+            "sourceColumn": "item",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "primary_key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0b7763a2-e366-4672-a97a-f5a408a93530",
+            "sourceColumn": "primary_key",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "d3eb68b2-ef20-4359-b14d-2f942bdedae4",
+        "partitions": [
+          {
+            "name": "players_final_items",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    players_final_items_Table = dota2_Schema{[Name=\"players_final_items\",Kind=\"Table\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(players_final_items_Table,{{\"account_id\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
               ],
               "type": "m"
             }
