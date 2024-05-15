@@ -2623,13 +2623,8 @@
           },
           {
             "name": "Win_Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": "[Wins] / [Losses]",
+            "expression": "[Wins] / [Total_Matches]",
+            "formatString": "#,0.0%;-#,0.0%;#,0.0%",
             "lineageTag": "2a22bc9f-8f4a-4936-bc07-a163a1e42117"
           },
           {
