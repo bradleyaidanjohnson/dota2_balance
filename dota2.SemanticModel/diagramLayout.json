@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 1142,
+        "x": 0,
         "y": 0
       },
       "nodes": [
@@ -101,8 +101,8 @@
         },
         {
           "location": {
-            "x": 626.61622309205063,
-            "y": 279.56530368672571
+            "x": 486.61622309205063,
+            "y": 383.56530368672571
           },
           "nodeIndex": "matches_powerbi",
           "nodeLineageTag": "a8887685-29fc-4bc3-a272-7e851b26a343",
@@ -127,8 +127,8 @@
         },
         {
           "location": {
-            "x": 345.38551742174059,
-            "y": 368.93193654369372
+            "x": 131.38551742174059,
+            "y": 413.93193654369372
           },
           "nodeIndex": "teamfights_powerbi",
           "nodeLineageTag": "b36ce3b9-afaf-4b79-bbc2-87abc10be1d8",
@@ -166,7 +166,7 @@
         },
         {
           "location": {
-            "x": 512.602182454541,
+            "x": 526.602182454541,
             "y": 0
           },
           "nodeIndex": "picks_bans",
@@ -214,7 +214,7 @@
             "height": 190,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 20
         },
         {
           "location": {
@@ -231,8 +231,8 @@
         },
         {
           "location": {
-            "x": 2699.602182454541,
-            "y": 420.16465457988352
+            "x": 2502.602182454541,
+            "y": 106.16465457988352
           },
           "nodeIndex": "hero_abils",
           "nodeLineageTag": "e8f7610b-3b0d-4a23-b5d6-415a547589a1",
@@ -254,6 +254,19 @@
             "width": 234
           },
           "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 2159.602182454541,
+            "y": 0
+          },
+          "nodeIndex": "Characters 2",
+          "nodeLineageTag": "b9f6907e-b789-415f-a922-eec94bcaf52a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
         }
       ],
       "name": "All tables",

@@ -12,7 +12,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\",\"Sheet3\",\"hero_abils\",\"hero_scrape\"]"
+        "value": "[\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\",\"Sheet3\",\"hero_abils\",\"hero_scrape\",\"Characters 2\"]"
       },
       {
         "name": "PBI_ProTooling",
@@ -167,13 +167,6 @@
         "toTable": "Date"
       },
       {
-        "name": "AutoDetected_1709e94c-47e0-4ea2-8243-6390357cd662",
-        "fromColumn": "match_id",
-        "fromTable": "players_matches",
-        "toColumn": "match_id",
-        "toTable": "matches_powerbi"
-      },
-      {
         "name": "ada96f61-1791-4d85-9367-80bde1a42317",
         "fromColumn": "hero_id",
         "fromTable": "players_matches",
@@ -204,6 +197,30 @@
         "fromTable": "hero_scrape",
         "toColumn": "localized_name",
         "toTable": "heroes_powerbi"
+      },
+      {
+        "name": "AutoDetected_6726455c-d828-4411-a5f8-af6cc5259d0c",
+        "fromColumn": "names",
+        "fromTable": "Sheet3",
+        "toColumn": "names",
+        "toTable": "Characters 2"
+      },
+      {
+        "name": "AutoDetected_f37fc9be-22e1-40f8-b47e-eb7d5b65783a",
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "names",
+        "fromTable": "Characters 2",
+        "isActive": false,
+        "toColumn": "localized_name",
+        "toTable": "heroes_powerbi"
+      },
+      {
+        "name": "b49b2ae7-2609-4711-81b2-65f53b498f2a",
+        "fromColumn": "match_id",
+        "fromTable": "players_matches",
+        "toColumn": "match_id",
+        "toTable": "matches_powerbi"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -1793,6 +1810,55 @@
         ],
         "excludeFromModelRefresh": true,
         "lineageTag": "58ec913d-bbaa-45bd-b64e-52076f18e22e",
+        "measures": [
+          {
+            "name": "Banned",
+            "expression": "CALCULATE(DISTINCTCOUNT(picks_bans[match_id]), picks_bans[is_pick] = FALSE())",
+            "formatString": "0",
+            "lineageTag": "8b7beb0d-e6ca-4939-af38-5ed2e1ae054f"
+          },
+          {
+            "name": "Picked",
+            "expression": "CALCULATE(DISTINCTCOUNT(picks_bans[match_id]), picks_bans[is_pick] = TRUE())",
+            "formatString": "0",
+            "lineageTag": "9c11069e-b8cb-46a8-ae16-ea383102580e"
+          },
+          {
+            "name": "Ban_perc",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "[Banned] / CALCULATE(DISTINCTCOUNT(players_matches[match_id]), ALL(players_matches))",
+            "lineageTag": "a95d7ce9-f89e-4ad2-ba13-579ab66b358e"
+          },
+          {
+            "name": "Universal_Total",
+            "expression": "CALCULATE(DISTINCTCOUNT(matches_powerbi[match_id]), ALL(matches_powerbi))",
+            "formatString": "0",
+            "lineageTag": "c2ff496a-a3f1-434c-9bb0-f29d14a86943"
+          },
+          {
+            "name": "test",
+            "expression": "CALCULATE(DISTINCTCOUNT(players_matches[match_id]), ALL(players_matches))",
+            "formatString": "0",
+            "lineageTag": "61304276-2f4e-42d6-ac01-b5ab28368ede"
+          },
+          {
+            "name": "WinRate_to_BanRate",
+            "expression": "[Win_Ratio] * (1- picks_bans[Ban_perc])",
+            "formatString": "0.0%;-0.0%;0.0%",
+            "lineageTag": "92cffe8f-30b5-47da-b799-a671724df95c"
+          },
+          {
+            "name": "Availability",
+            "expression": "1- picks_bans[Ban_perc]",
+            "formatString": "0.0%;-0.0%;0.0%",
+            "lineageTag": "a8e0b4d3-c0a8-4fe8-8890-d38e0d68d5d1"
+          }
+        ],
         "partitions": [
           {
             "name": "picks_bans",
@@ -2481,7 +2547,7 @@
             "formatString": "0",
             "isDataTypeInferred": true,
             "lineageTag": "e4155f52-9d94-40f9-ba62-5ae263633903",
-            "summarizeBy": "sum",
+            "summarizeBy": "none",
             "type": "calculated"
           }
         ],
@@ -2516,6 +2582,64 @@
             ],
             "expression": "[Wins] / [Losses]",
             "lineageTag": "2a22bc9f-8f4a-4936-bc07-a163a1e42117"
+          },
+          {
+            "name": "h2h_total_matches",
+            "expression": [
+              "",
+              "VAR _char2 = ",
+              "    SELECTEDVALUE('Characters 2'[names])",
+              "VAR _char1 = ",
+              "    SELECTEDVALUE('Characters'[names])",
+              "VAR _id2 =",
+              "    CALCULATE(MAX(heroes_powerbi[id]), USERELATIONSHIP(heroes_powerbi[localized_name], 'Characters 2'[names]), ALL(heroes_powerbi))",
+              "VAR _id1 =",
+              "    MAX(heroes_powerbi[id])",
+              "VAR _char1_match_ids =",
+              "    CALCULATETABLE(",
+              "        DISTINCT(players_matches[match_id]),",
+              "        players_matches[hero_id] = _id1",
+              "    )",
+              "",
+              "VAR _char2_match_ids =",
+              "    CALCULATETABLE(",
+              "        DISTINCT(players_matches[match_id]),",
+              "        players_matches[hero_id] = _id2,",
+              "        ALL('Characters')  // Ignore the global active filter on 'Characters'",
+              "    )",
+              "",
+              "VAR _char1_matches =",
+              "    FILTER(",
+              "        players_matches,",
+              "        players_matches[match_id] IN _char1_match_ids",
+              "    )",
+              "",
+              "VAR _char2_matches =",
+              "    FILTER(",
+              "        ALL(players_matches),  // Ignore any active filters",
+              "        players_matches[match_id] IN _char2_match_ids",
+              "    )",
+              "",
+              "VAR _table_intersect = ",
+              "    INTERSECT(_char1_matches, _char2_matches)",
+              "VAR _common_match_ids =",
+              "    INTERSECT(_char1_match_ids, _char2_match_ids)",
+              "",
+              "VAR _different_sides_matches =",
+              "    FILTER(",
+              "        players_matches,",
+              "        players_matches[match_id] IN _common_match_ids &&",
+              "        CALCULATE(",
+              "            DISTINCTCOUNT(players_matches[side]),",
+              "            players_matches[match_id] = EARLIER(players_matches[match_id]),",
+              "            players_matches[hero_id] = _id1 || players_matches[hero_id] = _id2",
+              "        ) = 2",
+              "    )",
+              "",
+              "RETURN",
+              "    MAX(_different_sides_matches[match_id])"
+            ],
+            "lineageTag": "7ab15bde-c7b1-45c0-914b-871d054daf0a"
           }
         ],
         "partitions": [
@@ -3700,6 +3824,788 @@
                 "    #\"Removed Columns1\" = Table.RemoveColumns(#\"Reordered Columns\",{\"abil1title\"})",
                 "in",
                 "    #\"Removed Columns1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Characters 2",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "names",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3da085ea-ad1c-4af8-9de4-a676b076764f",
+            "sourceColumn": "names",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "button_images",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "02f024fa-bce5-40fa-950b-450110e0e29a",
+            "sourceColumn": "button_images",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "title",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5a62f890-b5d5-45a2-b9ac-99d25837599d",
+            "sourceColumn": "title",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name_caps",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "06a7f637-5e8f-4cf5-a295-238d9f644057",
+            "sourceColumn": "name_caps",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "video_resized",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9f4ae41e-46a1-4bf3-8212-8a7577542b98",
+            "sourceColumn": "video_resized",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ability_1_img",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "35699565-ebbf-45c0-ae87-50b4a17c3fa6",
+            "sourceColumn": "ability_1_img",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ability_1_vid_code",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ec83d2b3-d121-420a-93dc-20a157302290",
+            "sourceColumn": "ability_1_vid_code",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ab1_title",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f1541c68-5250-4ff3-b525-8530561707c5",
+            "sourceColumn": "ab1_title",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2eb680e8-77ab-4eec-8777-e490d723c4fb",
+            "sourceColumn": "_2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_3",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f664b893-71b1-42ca-bac4-72a32b8958eb",
+            "sourceColumn": "_3",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_4",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ed0eba18-905c-4ac7-923b-c12e6dd54418",
+            "sourceColumn": "_4",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_5",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3e698c20-515c-48b3-9bef-2836b7b95c40",
+            "sourceColumn": "_5",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_6",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3136a517-c8ed-4ad6-9c9b-ad51576bdaa1",
+            "sourceColumn": "_6",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_7",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "63449b20-73ed-4ddc-bd44-0901229d5759",
+            "sourceColumn": "_7",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_8",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1c5a3653-edcf-48ec-962c-9accfd3c22b7",
+            "sourceColumn": "_8",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_9",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e73658bf-200c-41b3-870b-850de44fbb59",
+            "sourceColumn": "_9",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_10",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "df23d19f-dd52-444d-a9f0-36eb6039cd8f",
+            "sourceColumn": "_10",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_11",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c74aa423-87e0-47d0-b29d-00da4d9aa0e7",
+            "sourceColumn": "_11",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_12",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "39229a06-ef58-4d71-89bf-752d4737eaea",
+            "sourceColumn": "_12",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_13",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "82602d58-b696-4d4e-8926-041a1c67f442",
+            "sourceColumn": "_13",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_14",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5127d411-c429-4888-b0e4-8bae4c24b727",
+            "sourceColumn": "_14",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_15",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ed63a97e-5d93-465a-b5ce-6ce557390da8",
+            "sourceColumn": "_15",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_16",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4a7c6352-a784-4896-ba0a-73e972b5f0b3",
+            "sourceColumn": "_16",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_17",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "745835d8-f0e3-4a04-9e46-16b4f3f71292",
+            "sourceColumn": "_17",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_18",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f79c3e46-c45d-45ee-9350-864df1849321",
+            "sourceColumn": "_18",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_19",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7ee946ae-43c5-49cb-9fc2-c060dd2e8d72",
+            "sourceColumn": "_19",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_20",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "614996a6-d9fe-4c6d-81c0-441860373b73",
+            "sourceColumn": "_20",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_21",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ce3bc096-871a-4d18-88ef-35258977771a",
+            "sourceColumn": "_21",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_22",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d0a45c6f-f279-4c71-bda5-473c40acf073",
+            "sourceColumn": "_22",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_23",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1a0da77f-4d03-4ff7-93f6-192262302df5",
+            "sourceColumn": "_23",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_24",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2cb81a33-8fe6-4d4c-91af-33b9d4497cfb",
+            "sourceColumn": "_24",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_25",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c5c303f5-4da1-454b-b157-96787a445d7a",
+            "sourceColumn": "_25",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_26",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d0fed850-2799-44fc-a7ad-47df26427b39",
+            "sourceColumn": "_26",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_27",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "88e23f1b-7f1b-44a9-8434-1abd65c0eef9",
+            "sourceColumn": "_27",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_28",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "85d0cf40-fec8-4582-92e1-0e5bf4847ca7",
+            "sourceColumn": "_28",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_29",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f383df59-37dd-4191-a6aa-aadbd3676b70",
+            "sourceColumn": "_29",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_30",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a6e05fc4-2b8d-4c70-a811-f8bea7616740",
+            "sourceColumn": "_30",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_31",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d699aeeb-d4de-4580-a026-633b5605e12d",
+            "sourceColumn": "_31",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_32",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bfc48718-1a4b-4925-b028-af159c1112b2",
+            "sourceColumn": "_32",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_33",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "12dec830-45f4-4946-903e-95039ad0bbc2",
+            "sourceColumn": "_33",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_34",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "fab1ae5a-7489-46c7-94d2-05cdae069dea",
+            "sourceColumn": "_34",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_35",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7c0491ea-5fdf-45f3-855e-0a3eb1bebb30",
+            "sourceColumn": "_35",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_36",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "51efba2d-e76d-4bb8-925e-a3b8e93c20de",
+            "sourceColumn": "_36",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_37",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f6498aca-38a9-4e4e-bd97-e863f8c02431",
+            "sourceColumn": "_37",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_38",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4851b592-b54b-4bb8-93c2-9088ce30446a",
+            "sourceColumn": "_38",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_39",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f4de0ab5-975f-4b92-8737-0a22119ca64c",
+            "sourceColumn": "_39",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_40",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5d6d2b99-0aaf-4654-ad27-6ac85a5312e2",
+            "sourceColumn": "_40",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_41",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "23b1bc6c-b4b1-4134-968c-f8a0c195d9c1",
+            "sourceColumn": "_41",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_42",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6b9090c8-d7f1-4469-bf0d-9129faf56124",
+            "sourceColumn": "_42",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_43",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "39889ec2-9a4a-488d-8fee-8cc006fc78e4",
+            "sourceColumn": "_43",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_44",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "141f700f-240e-49d9-af75-d8c52ea7cff4",
+            "sourceColumn": "_44",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_45",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "98fa6074-0aaf-4224-ac20-cbb4fcef7614",
+            "sourceColumn": "_45",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_46",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "86093421-e96f-4d20-97e1-861ab899cb2f",
+            "sourceColumn": "_46",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_47",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "28ee2a66-14a1-4e79-9504-7249f0075419",
+            "sourceColumn": "_47",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_48",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0c9c2b79-1b44-47c9-b5c1-c2c70de1ed5d",
+            "sourceColumn": "_48",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_49",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b0032b3f-0ae3-4639-a213-4db1432ff2f6",
+            "sourceColumn": "_49",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "_50",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ec978307-ccba-4460-a745-8e5b0bf105c4",
+            "sourceColumn": "_50",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "b9f6907e-b789-415f-a922-eec94bcaf52a",
+        "measures": [
+          {
+            "name": "h2h vid",
+            "expression": "CALCULATE(MAX('Characters 2'[video_resized]), ALL(Characters), USERELATIONSHIP('Characters 2'[names], heroes_powerbi[localized_name]))",
+            "lineageTag": "c04cb1e9-b0b4-4962-97e4-e2582122f965"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Characters 2",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleSheets.Contents(\"https://docs.google.com/spreadsheets/d/1zLxE1yP648A_V_HPK0kZu2wDrG2vRDaf4A3UJzb9RPk/edit?usp=sharing\"),",
+                "    Characters_Table = Source{[name=\"Characters\",ItemKind=\"Table\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Characters_Table, [PromoteAllScalars=true]),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Promoted Headers\",{\"ability_1_class_start\", \"ability_1_img_start\", \"ability_1_img_end\", \"ability_1_video_html_start\", \"ability_1_video_html_start_1\", \"ab1_class_start\", \"ab1_text_start\", \"\"})",
+                "in",
+                "    #\"Removed Columns\""
               ],
               "type": "m"
             }
