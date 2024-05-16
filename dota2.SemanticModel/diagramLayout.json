@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 2,
-        "y": 11
+        "x": 484,
+        "y": 0
       },
       "nodes": [
         {
@@ -19,7 +19,7 @@
             "height": 232,
             "width": 249
           },
-          "zIndex": 6
+          "zIndex": 7
         },
         {
           "location": {
@@ -32,7 +32,7 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 7
+          "zIndex": 8
         },
         {
           "location": {
@@ -45,25 +45,12 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 8
-        },
-        {
-          "location": {
-            "x": 1440.602182454541,
-            "y": 588
-          },
-          "nodeIndex": "item_names_powerbi",
-          "nodeLineageTag": "96e9f718-d92c-4af0-9cb3-c00a39ca8985",
-          "size": {
-            "height": 128,
-            "width": 234
-          },
           "zIndex": 9
         },
         {
           "location": {
-            "x": 1163.7388044047316,
-            "y": 915.329309159767
+            "x": 920.73880440473158,
+            "y": 879.329309159767
           },
           "nodeIndex": "items_powerbi",
           "nodeLineageTag": "e97244f7-076d-42cf-a032-63fa189541f2",
@@ -81,7 +68,7 @@
           "nodeIndex": "killed_powerbi",
           "nodeLineageTag": "784173e5-8136-47ff-ae74-83b46d081e03",
           "size": {
-            "height": 268,
+            "height": 145,
             "width": 234
           },
           "zIndex": 11
@@ -107,46 +94,46 @@
           "nodeIndex": "matches_powerbi",
           "nodeLineageTag": "a8887685-29fc-4bc3-a272-7e851b26a343",
           "size": {
-            "height": 300,
+            "height": 145,
             "width": 234
           },
           "zIndex": 13
         },
         {
           "location": {
-            "x": 396.41981289134947,
-            "y": 812.82570422348317
+            "x": 431.41981289134947,
+            "y": 800.82570422348317
           },
           "nodeIndex": "players_powerbi",
           "nodeLineageTag": "06c3784e-5bb5-4586-b066-dbfdc1c86185",
           "size": {
-            "height": 241,
+            "height": 165,
             "width": 234
           },
           "zIndex": 18
         },
         {
           "location": {
-            "x": 131.38551742174059,
-            "y": 413.93193654369372
+            "x": 140.38551742174059,
+            "y": 352.93193654369372
           },
           "nodeIndex": "teamfights_powerbi",
           "nodeLineageTag": "b36ce3b9-afaf-4b79-bbc2-87abc10be1d8",
           "size": {
-            "height": 273,
+            "height": 145,
             "width": 234
           },
           "zIndex": 14
         },
         {
           "location": {
-            "x": 1133.602182454541,
-            "y": 47
+            "x": 1064.602182454541,
+            "y": 0
           },
           "nodeIndex": "heroes_powerbi",
           "nodeLineageTag": "a58bfc72-5325-4e7a-96be-51b64329228d",
           "size": {
-            "height": 224,
+            "height": 145,
             "width": 234
           },
           "zIndex": 17
@@ -172,28 +159,28 @@
           "nodeIndex": "picks_bans",
           "nodeLineageTag": "58ec913d-bbaa-45bd-b64e-52076f18e22e",
           "size": {
-            "height": 200,
+            "height": 145,
             "width": 234
           },
           "zIndex": 16
         },
         {
           "location": {
-            "x": 642.602182454541,
-            "y": 588.16465457988352
+            "x": 438.602182454541,
+            "y": 594.16465457988352
           },
           "nodeIndex": "Date",
           "nodeLineageTag": "6d54d6f8-5e6e-4935-ab52-a5ff93db7f84",
           "size": {
-            "height": 300,
+            "height": 145,
             "width": 234
           },
           "zIndex": 19
         },
         {
           "location": {
-            "x": 2131.602182454541,
-            "y": 394.16465457988352
+            "x": 2025.602182454541,
+            "y": 416.16465457988352
           },
           "nodeIndex": "DateAutoTemplate",
           "nodeLineageTag": "f5f6742e-7906-498e-98e3-c389f74efd54",
@@ -201,12 +188,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 5
+          "zIndex": 6
         },
         {
           "location": {
-            "x": 266.602182454541,
-            "y": 186
+            "x": 239.60218245454098,
+            "y": 140
           },
           "nodeIndex": "players_matches",
           "nodeLineageTag": "43470b1c-981e-48ae-9ef6-987642846a71",
@@ -218,8 +205,8 @@
         },
         {
           "location": {
-            "x": 2415.602182454541,
-            "y": 432.16465457988352
+            "x": 1604.602182454541,
+            "y": 817.16465457988352
           },
           "nodeIndex": "Sheet3",
           "nodeLineageTag": "888d5554-ab4b-43c6-a8aa-f370591fb288",
@@ -227,28 +214,15 @@
             "height": 224,
             "width": 234
           },
-          "zIndex": 2
-        },
-        {
-          "location": {
-            "x": 2502.602182454541,
-            "y": 106.16465457988352
-          },
-          "nodeIndex": "hero_abils",
-          "nodeLineageTag": "e8f7610b-3b0d-4a23-b5d6-415a547589a1",
-          "size": {
-            "height": 248,
-            "width": 234
-          },
           "zIndex": 3
         },
         {
           "location": {
-            "x": 1826.602182454541,
-            "y": 579.16465457988352
+            "x": 2041.602182454541,
+            "y": 776.16465457988352
           },
-          "nodeIndex": "hero_scrape",
-          "nodeLineageTag": "334d1788-d0a1-4a5f-b9e1-9908de85ef08",
+          "nodeIndex": "hero_abils",
+          "nodeLineageTag": "e8f7610b-3b0d-4a23-b5d6-415a547589a1",
           "size": {
             "height": 248,
             "width": 234
@@ -257,8 +231,21 @@
         },
         {
           "location": {
-            "x": 2159.602182454541,
-            "y": 0
+            "x": 1655.602182454541,
+            "y": 478.16465457988352
+          },
+          "nodeIndex": "hero_scrape",
+          "nodeLineageTag": "334d1788-d0a1-4a5f-b9e1-9908de85ef08",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1893.602182454541,
+            "y": 34
           },
           "nodeIndex": "Characters 2",
           "nodeLineageTag": "b9f6907e-b789-415f-a922-eec94bcaf52a",
@@ -266,17 +253,43 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 2
         },
         {
           "location": {
-            "x": 840,
-            "y": 289.16465457988352
+            "x": 752,
+            "y": 272.16465457988352
           },
           "nodeIndex": "players_final_items",
           "nodeLineageTag": "d3eb68b2-ef20-4359-b14d-2f942bdedae4",
           "size": {
             "height": 238,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1332.602182454541,
+            "y": 771.66465457988352
+          },
+          "nodeIndex": "items_scrape",
+          "nodeLineageTag": "a34d4880-09af-4f6e-8a9e-54647f8052d5",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 727.602182454541,
+            "y": 529.66465457988352
+          },
+          "nodeIndex": "equipment",
+          "nodeLineageTag": "0fbd5d12-e14d-4576-8226-4d01b2f6f955",
+          "size": {
+            "height": 248,
             "width": 234
           },
           "zIndex": 0

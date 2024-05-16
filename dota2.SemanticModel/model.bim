@@ -12,7 +12,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"item_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\",\"Sheet3\",\"hero_abils\",\"hero_scrape\",\"Characters 2\",\"players_final_items\"]"
+        "value": "[\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\",\"Sheet3\",\"hero_abils\",\"hero_scrape\",\"Characters 2\",\"players_final_items\",\"items_scrape\",\"equipment\"]"
       },
       {
         "name": "PBI_ProTooling",
@@ -33,6 +33,7 @@
       }
     ],
     "dataAccessOptions": {
+      "fastCombine": true,
       "legacyRedirects": true,
       "returnErrorValuesAsNull": true
     },
@@ -129,14 +130,6 @@
         "toTable": "teamfights_powerbi"
       },
       {
-        "name": "457aad65-6e99-477a-b202-e123cc9fa413",
-        "crossFilteringBehavior": "bothDirections",
-        "fromColumn": "primary_key",
-        "fromTable": "items_powerbi",
-        "toColumn": "primary_key",
-        "toTable": "players_powerbi"
-      },
-      {
         "name": "a96785f8-f714-4ae5-809a-faa5210f3d6c",
         "crossFilteringBehavior": "bothDirections",
         "fromColumn": "primary_key",
@@ -216,19 +209,35 @@
         "toTable": "matches_powerbi"
       },
       {
-        "name": "cc114be8-e3fd-446c-8ecb-262e610240bd",
-        "fromColumn": "item",
-        "fromTable": "players_final_items",
+        "name": "70d52b29-5b49-4b5e-accb-9e29946c4539",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "item_id",
+        "fromTable": "items_scrape",
+        "toCardinality": "many",
         "toColumn": "item_id",
-        "toTable": "item_names_powerbi"
+        "toTable": "items_powerbi"
       },
       {
-        "name": "897b8c5f-6e6f-4e98-9539-2c55a03f3d12",
+        "name": "d6307a1c-7ab0-4cb3-808d-221ee4c42ca9",
         "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "primary_key",
+        "fromTable": "items_powerbi",
+        "toColumn": "primary_key",
+        "toTable": "players_powerbi"
+      },
+      {
+        "name": "2b7adab0-6ab3-4e36-ad84-3bcb25e78b62",
         "fromColumn": "primary_key",
         "fromTable": "players_final_items",
         "toColumn": "primary_key",
         "toTable": "players_matches"
+      },
+      {
+        "name": "8a383a45-12a8-43d4-b8f3-0b4b5ab2af9d",
+        "fromColumn": "item",
+        "fromTable": "players_final_items",
+        "toColumn": "id",
+        "toTable": "equipment"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -274,51 +283,6 @@
             "summarizeBy": "none"
           },
           {
-            "name": "account_id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "f337d500-9db6-4ddd-8985-e690c9921de0",
-            "sourceColumn": "account_id",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "hero_id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "3dec9597-47c5-42da-bd37-5c2f05510937",
-            "sourceColumn": "hero_id",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "player_slot",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "bf008ff1-bef2-4d35-87f6-d7a8cc3457d6",
-            "sourceColumn": "player_slot",
-            "summarizeBy": "sum"
-          },
-          {
             "name": "secondary_key",
             "annotations": [
               {
@@ -330,10 +294,80 @@
             "lineageTag": "62c4ecfb-837c-4b8c-987c-8099011df28e",
             "sourceColumn": "secondary_key",
             "summarizeBy": "none"
+          },
+          {
+            "name": "fight",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d69ec941-6099-43b7-8db3-01d60cbeb9de",
+            "sourceColumn": "fight",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "player_num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "25176a49-c1ac-474d-89f4-a71b13a71531",
+            "sourceColumn": "player_num",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "item_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "ee6165ca-fc84-4761-aa41-64edbb7f0fb5",
+            "sourceColumn": "item_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "uses",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "34bd0a01-d092-4b7d-8f06-7603fc4835c9",
+            "sourceColumn": "uses",
+            "summarizeBy": "sum"
           }
         ],
         "excludeFromModelRefresh": true,
         "lineageTag": "e97244f7-076d-42cf-a032-63fa189541f2",
+        "measures": [
+          {
+            "name": "uses_total",
+            "expression": "SUM(items_powerbi[uses])",
+            "formatString": "0",
+            "lineageTag": "d18b600b-7fe0-4667-b2fa-594e3ee00caf"
+          },
+          {
+            "name": "item_test",
+            "expression": "CALCULATE(SUM(items_powerbi[uses]), FILTER(items_powerbi, items_powerbi[item_id] = 10))",
+            "formatString": "0",
+            "lineageTag": "b3f73e4e-8d8e-4be7-8962-b401e165f4ae"
+          }
+        ],
         "partitions": [
           {
             "name": "items_powerbi",
@@ -344,10 +378,11 @@
                 "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
                 "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
                 "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
-                "    players_matches_Table = dota2_Schema{[Name=\"players_matches\",Kind=\"Table\"]}[Data],",
-                "    #\"Added Custom\" = Table.AddColumn(players_matches_Table, \"secondary_key\", each [match_id] & \"-\" & [hero_id])",
+                "    items_powerbi_View = dota2_Schema{[Name=\"items_powerbi\",Kind=\"View\"]}[Data],",
+                "    #\"Added Custom\" = Table.AddColumn(items_powerbi_View, \"primary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\") & \"_\" & Text.From([player_num])),",
+                "    #\"Added Custom1\" = Table.AddColumn(#\"Added Custom\", \"secondary_key\", each Text.From([match_id]) & \"_\" & Text.PadStart(Text.From([fight]), 2, \"0\"))",
                 "in",
-                "    #\"Added Custom\""
+                "    #\"Added Custom1\""
               ],
               "type": "m"
             }
@@ -1124,10 +1159,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1257,10 +1288,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1377,10 +1404,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1434,77 +1457,11 @@
         ]
       },
       {
-        "name": "item_names_powerbi",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          }
-        ],
-        "columns": [
-          {
-            "name": "item_id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "b988e20c-d263-4f54-93ae-c2fed7f489e3",
-            "sourceColumn": "item_id",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "item_name",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "437984d7-09b0-45fd-90c9-edb58138ca28",
-            "sourceColumn": "item_name",
-            "summarizeBy": "none"
-          }
-        ],
-        "excludeFromModelRefresh": true,
-        "lineageTag": "96e9f718-d92c-4af0-9cb3-c00a39ca8985",
-        "partitions": [
-          {
-            "name": "item_names_powerbi",
-            "mode": "import",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
-                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
-                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
-                "    item_names_powerbi_Table = dota2_Schema{[Name=\"item_names_powerbi\",Kind=\"Table\"]}[Data]",
-                "in",
-                "    item_names_powerbi_Table"
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
         "name": "killee_names_powerbi",
         "annotations": [
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1678,10 +1635,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -2652,7 +2605,7 @@
           },
           {
             "name": "Losses",
-            "expression": "[Total_Matches] - [Wins]",
+            "expression": "CALCULATE(COUNT(players_matches[match_id])) - CALCULATE(SUM(players_matches[win]))",
             "formatString": "0",
             "lineageTag": "5afc2ecf-b6f3-4549-b555-e65f07770f3e"
           },
@@ -2719,6 +2672,18 @@
               "    MAX(_different_sides_matches[match_id])"
             ],
             "lineageTag": "7ab15bde-c7b1-45c0-914b-871d054daf0a"
+          },
+          {
+            "name": "Losses_New",
+            "expression": "CALCULATE(COUNT(players_matches[match_id])) - CALCULATE(SUM(players_matches[win]))",
+            "formatString": "0",
+            "lineageTag": "00766d44-2002-45cd-8a42-ad9a491b51d7"
+          },
+          {
+            "name": "All_Matches",
+            "expression": "CALCULATE(DISTINCTCOUNT(players_matches[match_id]), ALL(players_matches))",
+            "formatString": "0",
+            "lineageTag": "97e6a7ae-4539-4205-ac72-d9d11405ab53"
           }
         ],
         "partitions": [
@@ -4754,7 +4719,7 @@
                 "value": "Automatic"
               }
             ],
-            "dataType": "int64",
+            "dataType": "double",
             "formatString": "0",
             "lineageTag": "f872e40c-5b29-4b1e-bde8-b8d710441561",
             "sourceColumn": "item",
@@ -4772,6 +4737,20 @@
             "lineageTag": "0b7763a2-e366-4672-a97a-f5a408a93530",
             "sourceColumn": "primary_key",
             "summarizeBy": "none"
+          },
+          {
+            "name": "slot_filled",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a563490c-f1f6-4a6f-b27c-6ec2bee2fcc8",
+            "sourceColumn": "slot_filled",
+            "summarizeBy": "sum"
           }
         ],
         "lineageTag": "d3eb68b2-ef20-4359-b14d-2f942bdedae4",
@@ -4789,6 +4768,320 @@
                 "    #\"Changed Type\" = Table.TransformColumnTypes(players_final_items_Table,{{\"account_id\", Int64.Type}})",
                 "in",
                 "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "items_scrape",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "img_url",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2369ba4d-a17a-46fe-9527-bd1a06e9ad4a",
+            "sourceColumn": "img_url",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "item_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "eb783845-5940-48b7-bc3a-ac2110ef5ff8",
+            "sourceColumn": "item_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "item_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "325492ac-b0b2-4611-ab5c-7ddb7eb4f234",
+            "sourceColumn": "item_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4733fe9a-1f30-4ddf-9e72-01ed24c5c9d4",
+            "sourceColumn": "id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name_x",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4ddcd336-0503-4fbc-8e65-24555321b8de",
+            "sourceColumn": "name_x",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cost",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "#,0",
+            "lineageTag": "27594539-ed47-4ab7-bcf0-46807d3f90ed",
+            "sourceColumn": "cost",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "secret_shop",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4bdfb5aa-e7fc-4ae3-9522-08ddf0a1e463",
+            "sourceColumn": "secret_shop",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "side_shop",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c78a5613-2284-46e0-a6aa-55d301e7c1b4",
+            "sourceColumn": "side_shop",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "recipe",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b506e96d-56c0-4d11-ba44-d6211e899266",
+            "sourceColumn": "recipe",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "localized_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "db90cd29-ab6f-4001-ae0d-2105e77c5ab1",
+            "sourceColumn": "localized_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name_y",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3e1b36d2-0e7e-45b5-b655-286215df92a0",
+            "sourceColumn": "name_y",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "a34d4880-09af-4f6e-8a9e-54647f8052d5",
+        "partitions": [
+          {
+            "name": "items_scrape",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleSheets.Contents(\"https://docs.google.com/spreadsheets/d/1U_Jmjk8xQcP1yuofnYPQiZFWuIsLsZ4aALOyTKFBW_E/edit?usp=sharing\"),",
+                "    items_powerbi_Table = Source{[name=\"items_powerbi\",ItemKind=\"Table\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(items_powerbi_Table, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"img_url\", type text}, {\"price\", Int64.Type}, {\"name_y\", type text}, {\"localized_name\", type text}, {\"item_id\", Int64.Type}, {\"cost\", Int64.Type}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"price\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "equipment",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "8c9349f3-bf97-4a67-93b1-c3120bdf1a3f",
+            "sourceColumn": "id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b484d035-a68d-44a9-9e89-ded164fe659e",
+            "sourceColumn": "name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cost",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "#,0",
+            "lineageTag": "5a2358f9-6cf7-44c4-a4fd-5393b27f8107",
+            "sourceColumn": "cost",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "secret_shop",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e3199008-6470-48cc-973f-49856b3672a7",
+            "sourceColumn": "secret_shop",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "side_shop",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "641c6b3f-867b-4618-97bf-01fd4f45f1af",
+            "sourceColumn": "side_shop",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "recipe",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4da86001-58d1-4d8b-83aa-1af398da346b",
+            "sourceColumn": "recipe",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "localized_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d6cbf8d6-d00c-4867-b762-416610423e45",
+            "sourceColumn": "localized_name",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "0fbd5d12-e14d-4576-8226-4d01b2f6f955",
+        "partitions": [
+          {
+            "name": "equipment",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleBigQuery.Database(),",
+                "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+                "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+                "    equipment_Table = dota2_Schema{[Name=\"equipment\",Kind=\"Table\"]}[Data],",
+                "    #\"Replaced Value\" = Table.ReplaceValue(equipment_Table,null,0,Replacer.ReplaceValue,{\"secret_shop\"}),",
+                "    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value\",null,0,Replacer.ReplaceValue,{\"side_shop\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Replaced Value1\",{{\"side_shop\", Int64.Type}, {\"secret_shop\", Int64.Type}}),",
+                "    #\"Sorted Rows\" = Table.Sort(#\"Changed Type\",{{\"id\", Order.Ascending}})",
+                "in",
+                "    #\"Sorted Rows\""
               ],
               "type": "m"
             }
