@@ -12,7 +12,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\",\"Sheet3\",\"hero_abils\",\"hero_scrape\",\"Characters 2\",\"players_final_items\",\"items_scrape\",\"equipment\"]"
+        "value": "[\"items_powerbi\",\"killed_powerbi\",\"matches_powerbi\",\"players_powerbi\",\"teamfights_powerbi\",\"abilities_powerbi\",\"ability_names_powerbi\",\"killee_names_powerbi\",\"heroes_powerbi\",\"roles\",\"picks_bans\",\"players_matches\",\"Characters\",\"Sheet3\",\"hero_abils\",\"hero_scrape\",\"Characters 2\",\"players_final_items\",\"items_scrape\",\"equipment\",\"equipment_details\"]"
       },
       {
         "name": "PBI_ProTooling",
@@ -38,6 +38,32 @@
       "returnErrorValuesAsNull": true
     },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "equipment_details",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = GoogleBigQuery.Database(),",
+          "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
+          "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
+          "    equipment_details_Table = dota2_Schema{[Name=\"equipment_details\",Kind=\"Table\"]}[Data]",
+          "in",
+          "    equipment_details_Table"
+        ],
+        "kind": "m",
+        "lineageTag": "ef2ba917-25c1-4707-8b88-76eab3ce2209"
+      }
+    ],
     "extendedProperties": [
       {
         "name": "SQLBI_BRAVO_ManageDatesConfiguration",
@@ -5062,6 +5088,19 @@
             "lineageTag": "d6cbf8d6-d00c-4867-b762-416610423e45",
             "sourceColumn": "localized_name",
             "summarizeBy": "none"
+          },
+          {
+            "name": "img",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a3c88ce5-d965-489a-a18f-b0757b352436",
+            "sourceColumn": "img",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "0fbd5d12-e14d-4576-8226-4d01b2f6f955",
@@ -5079,9 +5118,11 @@
                 "    #\"Replaced Value\" = Table.ReplaceValue(equipment_Table,null,0,Replacer.ReplaceValue,{\"secret_shop\"}),",
                 "    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value\",null,0,Replacer.ReplaceValue,{\"side_shop\"}),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Replaced Value1\",{{\"side_shop\", Int64.Type}, {\"secret_shop\", Int64.Type}}),",
-                "    #\"Sorted Rows\" = Table.Sort(#\"Changed Type\",{{\"id\", Order.Ascending}})",
+                "    #\"Sorted Rows\" = Table.Sort(#\"Changed Type\",{{\"id\", Order.Ascending}}),",
+                "    #\"Merged Queries\" = Table.NestedJoin(#\"Sorted Rows\", {\"id\"}, equipment_details, {\"id\"}, \"equipment_details\", JoinKind.LeftOuter),",
+                "    #\"Expanded equipment_details\" = Table.ExpandTableColumn(#\"Merged Queries\", \"equipment_details\", {\"img\"}, {\"img\"})",
                 "in",
-                "    #\"Sorted Rows\""
+                "    #\"Expanded equipment_details\""
               ],
               "type": "m"
             }
