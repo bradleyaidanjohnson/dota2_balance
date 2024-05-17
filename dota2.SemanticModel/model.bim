@@ -1,5 +1,5 @@
 {
-  "compatibilityLevel": 1550,
+  "compatibilityLevel": 1567,
   "model": {
     "annotations": [
       {
@@ -514,6 +514,19 @@
         ],
         "excludeFromModelRefresh": true,
         "lineageTag": "784173e5-8136-47ff-ae74-83b46d081e03",
+        "measures": [
+          {
+            "name": "kd_ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "CALCULATE(DIVIDE(sum(killed_powerbi[kills]), SUM(players_powerbi[deaths])))",
+            "lineageTag": "47ebf3d8-d4b1-4d42-bf5b-74c943372776"
+          }
+        ],
         "partitions": [
           {
             "name": "killed_powerbi",
@@ -904,6 +917,46 @@
             "lineageTag": "300ef1b1-58f5-4850-b253-ad3fe98f0899",
             "sourceColumn": "start_time_date",
             "summarizeBy": "none"
+          },
+          {
+            "name": "duration(m)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "double",
+            "expression": "matches_powerbi[duration] / 60",
+            "formatString": "0.0",
+            "lineageTag": "4814f082-107b-46f6-88c7-4da2f4b41329",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "score_diff",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "ABS(matches_powerbi[radiant_score] - matches_powerbi[dire_score])",
+            "formatString": "0.0",
+            "lineageTag": "c757923d-abed-4ac5-a8aa-cfa697eead96",
+            "summarizeBy": "sum",
+            "type": "calculated"
           }
         ],
         "excludeFromModelRefresh": true,
@@ -1284,6 +1337,22 @@
             "lineageTag": "63f74221-23cc-48af-8269-d8b6af77b625",
             "sourceColumn": "primary_key",
             "summarizeBy": "none"
+          },
+          {
+            "name": "fight_duration",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "teamfights_powerbi[fight_end] - teamfights_powerbi[fight_start]",
+            "formatString": "0.0",
+            "isDataTypeInferred": true,
+            "lineageTag": "3badee0f-1900-4c31-a95c-a859c532041f",
+            "summarizeBy": "sum",
+            "type": "calculated"
           }
         ],
         "excludeFromModelRefresh": true,
@@ -1646,9 +1715,10 @@
                 "    Source = GoogleBigQuery.Database([BillingProject=\"dota-2-77927\"]),",
                 "    #\"dota-2-77927\" = Source{[Name=\"dota-2-77927\"]}[Data],",
                 "    dota2_Schema = #\"dota-2-77927\"{[Name=\"dota2\",Kind=\"Schema\"]}[Data],",
-                "    heroes_powerbi_View = dota2_Schema{[Name=\"heroes_powerbi\",Kind=\"View\"]}[Data]",
+                "    heroes_powerbi_View = dota2_Schema{[Name=\"heroes_powerbi\",Kind=\"View\"]}[Data],",
+                "    #\"Sorted Rows\" = Table.Sort(heroes_powerbi_View,{{\"localized_name\", Order.Ascending}})",
                 "in",
-                "    heroes_powerbi_View"
+                "    #\"Sorted Rows\""
               ],
               "type": "m"
             }
@@ -2613,6 +2683,21 @@
             "lineageTag": "bd67ede1-271f-4130-b109-403146f9e6d2",
             "sourceColumn": "secondary_key",
             "summarizeBy": "none"
+          },
+          {
+            "name": "win_text",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "if(players_matches[win] = 1, \"Winner\", \"Loser\")",
+            "isDataTypeInferred": true,
+            "lineageTag": "d68eb6fd-9f5c-481c-8507-cf586e33c171",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "43470b1c-981e-48ae-9ef6-987642846a71",
@@ -4971,9 +5056,10 @@
                 "    items_powerbi_Table = Source{[name=\"items_powerbi\",ItemKind=\"Table\"]}[Data],",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(items_powerbi_Table, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"img_url\", type text}, {\"price\", Int64.Type}, {\"name_y\", type text}, {\"localized_name\", type text}, {\"item_id\", Int64.Type}, {\"cost\", Int64.Type}}),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"price\"})",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"price\"}),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Removed Columns\",\"\",\"https://static.wikia.nocookie.net/dota2_gamepedia/images/5/54/Meteor_Hammer_icon.png\",Replacer.ReplaceValue,{\"img_url\"})",
                 "in",
-                "    #\"Removed Columns\""
+                "    #\"Replaced Value\""
               ],
               "type": "m"
             }
