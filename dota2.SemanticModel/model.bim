@@ -1357,6 +1357,56 @@
         ],
         "excludeFromModelRefresh": true,
         "lineageTag": "b36ce3b9-afaf-4b79-bbc2-87abc10be1d8",
+        "measures": [
+          {
+            "name": "Deaths_Time",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "VAR Total_Deaths =",
+              "    CALCULATE(",
+              "        SUM(players_powerbi[deaths]),",
+              "        ALL(players_powerbi)",
+              "    )",
+              "",
+              "VAR MatchesInPeriod =",
+              "    SWITCH(",
+              "        TRUE(),",
+              "        ISFILTERED('Date'[Date]),",
+              "            CALCULATE(",
+              "                DISTINCTCOUNT(players_matches[match_id]),",
+              "                ALL(players_matches),",
+              "                FILTER(",
+              "                    ALL('Date'),",
+              "                    'Date'[Date] <= MAX('Date'[Date])",
+              "                )",
+              "            ),",
+              "        ISFILTERED('Date'[Month]),",
+              "            CALCULATE(",
+              "                DISTINCTCOUNT(players_matches[match_id]),",
+              "                ALL(players_matches),",
+              "                DATESMTD('Date'[Date])",
+              "            ),",
+              "        ISFILTERED('Date'[Year]),",
+              "            CALCULATE(",
+              "                DISTINCTCOUNT(players_matches[match_id]),",
+              "                ALL(players_matches),",
+              "                DATESYTD('Date'[Date])",
+              "            )",
+              "    )",
+              "",
+              "RETURN",
+              "    IF(MatchesInPeriod = 0, BLANK(), Total_Deaths / MatchesInPeriod)",
+              ""
+            ],
+            "lineageTag": "2a150a2a-4b55-4f5d-a28d-8b6ddbab6ac9"
+          }
+        ],
         "partitions": [
           {
             "name": "teamfights_powerbi",
